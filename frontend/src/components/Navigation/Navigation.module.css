@@ -1,0 +1,27 @@
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.navigation h3 {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--font-main, #bbbbc0);
+}
+
+.navigation ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style: none;
+  width: fit-content;
+}
+
+.navigation li a {
+  font-size: 2rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
