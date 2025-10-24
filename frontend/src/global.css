@@ -76,3 +76,7 @@ a {
 #root > footer {
   grid-area: footer;
 }
+
+#root > main {
+  grid-area: content;
+}

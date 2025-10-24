@@ -1,0 +1,33 @@
+.banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35rem;
+  background-image: url("./ad-backgroung.png");
+  background-size: cover;
+  gap: 16rem;
+  border-radius: 12px;
+}
+
+.banner > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.banner h2 {
+  font-size: 5.2rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.banner p {
+  font-size: 3.2rem;
+  font-weight: 500;
+  color: #5e6185;
+  margin-bottom: 2.8rem;
+}
+
+.headphonesImg {
+}
