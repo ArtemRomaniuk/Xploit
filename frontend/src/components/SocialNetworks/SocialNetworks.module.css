@@ -1,0 +1,28 @@
+.socialNetworks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 2.4rem;
+  color: var(--font-main);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem 1.6rem;
+  list-style: none;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
