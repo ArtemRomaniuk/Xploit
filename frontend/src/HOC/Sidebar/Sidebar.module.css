@@ -1,8 +1,0 @@
-.sidebar {
-  background-color: var(--bg-darker);
-  width: 30rem;
-  padding: 2.4rem 0 2.4rem 2.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-}
