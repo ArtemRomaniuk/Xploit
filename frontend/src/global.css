@@ -43,6 +43,7 @@ body {
   font-family: "Inter", sans-serif;
   background-color: var(--bg-main);
   color: var(--font-main);
+  line-height: normal;
 }
 
 button,
