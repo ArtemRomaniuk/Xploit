@@ -2,6 +2,7 @@ import styles from "./Main.module.css";
 import Header from "../../HOC/Header";
 import Sidebar from "../../HOC/Sidebar";
 import Footer from "../../HOC/Footer";
+import MainContent from "./MainContent";
 
 const Main = () => {
   return (
@@ -9,6 +10,7 @@ const Main = () => {
       <Header />
       <Sidebar />
       <Footer />
+      <MainContent />
     </div>
   );
 };

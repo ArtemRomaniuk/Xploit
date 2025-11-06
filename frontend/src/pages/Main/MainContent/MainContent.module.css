@@ -1,0 +1,6 @@
+.mainContent {
+  padding: 6.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6.4rem;
+}

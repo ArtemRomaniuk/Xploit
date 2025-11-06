@@ -9,7 +9,15 @@ import Cart from "./components/Cart";
 const Header = () => {
   return (
     <header className={styles.header}>
-      <Logo className={styles.logo} />
+      <Logo
+        className={styles.logo}
+        onClick={() => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }}
+      />
 
       <div className={styles.btnSearchContainer}>
         <Button

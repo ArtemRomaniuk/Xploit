@@ -18,42 +18,44 @@ import IconVR from "./icons/icon-vr.svg?react";
 const Sidebar = () => {
   return (
     <aside className={styles.sidebar}>
-      <NavList
-        navName="Navigation"
-        navItems={[
-          { icon: IconUser, value: "Profile" },
-          { icon: IconQuests, value: "Quests" },
-          { icon: IconWishList, value: "Wish list" },
-        ]}
-      />
+      <div className={styles.container}>
+        <NavList
+          navName="Navigation"
+          navItems={[
+            { icon: IconUser, value: "Profile" },
+            { icon: IconQuests, value: "Quests" },
+            { icon: IconWishList, value: "Wish list" },
+          ]}
+        />
 
-      <NavList
-        navName="Category"
-        navItems={[
-          { icon: IconGames, value: "Games" },
-          { icon: IconComputers, value: "Computers" },
-          { icon: IconMouses, value: "Mouses" },
-          { icon: IconKeyboards, value: "Keyboards" },
-          { icon: IconHeadphones, value: "Headphones" },
-          { icon: IconMicrophones, value: "Microphones" },
-          { icon: IconGamepads, value: "Gamepads" },
-          { icon: IconVR, value: "VR headsets" },
-        ]}
-        collapsing
-      />
+        <NavList
+          navName="Category"
+          navItems={[
+            { icon: IconGames, value: "Games" },
+            { icon: IconComputers, value: "Computers" },
+            { icon: IconMouses, value: "Mouses" },
+            { icon: IconKeyboards, value: "Keyboards" },
+            { icon: IconHeadphones, value: "Headphones" },
+            { icon: IconMicrophones, value: "Microphones" },
+            { icon: IconGamepads, value: "Gamepads" },
+            { icon: IconVR, value: "VR headsets" },
+          ]}
+          collapsing
+        />
 
-      <SocialNetworks />
+        <SocialNetworks />
 
-      <NavList
-        navName="Resources"
-        navItems={[
-          "Help",
-          "About us",
-          "Contacts",
-          "Guarantees",
-          "Work with us",
-        ]}
-      />
+        <NavList
+          navName="Resources"
+          navItems={[
+            "Help",
+            "About us",
+            "Contacts",
+            "Guarantees",
+            "Work with us",
+          ]}
+        />
+      </div>
     </aside>
   );
 };
