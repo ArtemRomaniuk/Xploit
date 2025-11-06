@@ -1,0 +1,25 @@
+.footer {
+  background-color: var(--bg-darker);
+  color: var(--font-darker);
+
+  padding: 4.4rem 2.4rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+}
+
+.logoCopyright {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+footer > *:first-child {
+  justify-self: start;
+}
+
+footer > *:last-child {
+  justify-self: end;
+}

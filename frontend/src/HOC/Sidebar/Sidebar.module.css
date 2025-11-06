@@ -1,0 +1,10 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  padding: 2.4rem;
+  gap: 2.4rem;
+
+  background-color: var(--bg-darker);
+}
