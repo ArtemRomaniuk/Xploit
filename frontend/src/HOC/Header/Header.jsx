@@ -5,8 +5,11 @@ import IconSquares from "./icons/icon-squares.svg?react";
 import SearchBar from "./components/SearchBar";
 import Profile from "./components/Profile";
 import Cart from "./components/Cart";
+import { useNavigate } from "react-router";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header className={styles.header}>
       <Logo
@@ -25,6 +28,7 @@ const Header = () => {
           $width="16rem"
           $height="4.4rem"
           $gap="0.4rem"
+          onClick={() => navigate("catalog")}
         >
           <IconSquares />
           Catalog

@@ -1,6 +1,7 @@
 import styles from "./Footer.module.css";
 import Logo from "../../components/Logo";
 import NavList from "../../components/NavList";
+import NavListItem from "../../components/NavList/NavListItem";
 
 const Footer = () => {
   return (
@@ -16,16 +17,17 @@ const Footer = () => {
       <NavList
         navName="Contact us"
         navItems={[
-          {
-            value: (
+          new NavListItem(
+            undefined,
+            (
               <>
                 601 W Temple Street,
                 <br /> Los Angeles CA, 90012
               </>
             ),
-          },
-          "415-201-6370",
-          "info@xploit.com",
+          ),
+          new NavListItem(undefined, "415-201-6370"),
+          new NavListItem(undefined, "info@xploit.com"),
         ]}
         //
         $fontColor="var(--font-darker)"
@@ -39,7 +41,12 @@ const Footer = () => {
 
       <NavList
         navName="Account"
-        navItems={["Create account", "Sign in", "Android app", "IOS app"]}
+        navItems={[
+          new NavListItem(undefined, "Create account"),
+          new NavListItem(undefined, "Sign in"),
+          new NavListItem(undefined, "Android app"),
+          new NavListItem(undefined, "IOS app"),
+        ]}
         //
         $fontColor="var(--font-darker)"
         $fontColorHover="var(--font-darker-hover)"
@@ -52,7 +59,12 @@ const Footer = () => {
 
       <NavList
         navName="Company"
-        navItems={["About Xploit", "For business", "Our partners", "Careers"]}
+        navItems={[
+          new NavListItem(undefined, "About Xploit"),
+          new NavListItem(undefined, "For business"),
+          new NavListItem(undefined, "Our partners"),
+          new NavListItem(undefined, "Careers"),
+        ]}
         //
         $fontColor="var(--font-darker)"
         $fontColorHover="var(--font-darker-hover)"
@@ -65,7 +77,11 @@ const Footer = () => {
 
       <NavList
         navName="Resources"
-        navItems={["Help center", "Privacy policy", "Terms of service"]}
+        navItems={[
+          new NavListItem(undefined, "Help center"),
+          new NavListItem(undefined, "Privacy policy"),
+          new NavListItem(undefined, "Terms of service"),
+        ]}
         //
         $fontColor="var(--font-darker)"
         $fontColorHover="var(--font-darker-hover)"

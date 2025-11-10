@@ -1,21 +1,12 @@
 import { useState } from "react";
 import StyledNavList from "./NavList.styles";
 import IconBtn from "./category-arrow.svg?react";
-
-const resolveItem = (item) => {
-  return typeof item === "object" ? (
-    <>
-      {item.icon ? <item.icon /> : null}
-      <span>{item.value}</span>
-    </>
-  ) : (
-    item
-  );
-};
+import { Link } from "react-router";
+import NavListItem from "./NavListItem";
 
 const NavList = ({
   navName = "Nav",
-  navItems = ["item1", "item2", "item3"],
+  navItems = [new NavListItem(), new NavListItem(), new NavListItem()],
   collapsing,
   ...props
 }) => {
@@ -40,7 +31,10 @@ const NavList = ({
       <ul>
         {navItems.map((item, i) => (
           <li key={i}>
-            <a href="#">{resolveItem(item)}</a>
+            <Link to={item.navTo}>
+              {item.icon && <item.icon />}
+              <span>{item.value}</span>
+            </Link>
           </li>
         ))}
       </ul>

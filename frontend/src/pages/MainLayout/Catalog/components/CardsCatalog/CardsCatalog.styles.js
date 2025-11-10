@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledCatalog = styled.div`
+const StyledCardsCatalog = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4.8rem;
@@ -42,10 +42,10 @@ const StyledCatalog = styled.div`
 
   & > div:last-child {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
     grid-auto-rows: 31.8rem;
     gap: 3.6rem 2.4rem;
   }
 `;
 
-export default StyledCatalog;
+export default StyledCardsCatalog;

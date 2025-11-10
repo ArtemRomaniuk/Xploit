@@ -1,0 +1,17 @@
+.placingOrderLayout {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.placingOrderLayout > header {
+}
+
+.placingOrderLayout > main {
+  margin-bottom: auto;
+}
+
+.placingOrderLayout > footer {
+}

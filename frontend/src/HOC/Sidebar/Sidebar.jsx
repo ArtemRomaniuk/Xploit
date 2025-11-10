@@ -1,6 +1,7 @@
 import styles from "./Sidebar.module.css";
 import NavList from "../../components/NavList";
 import SocialNetworks from "./components/SocialNetworks";
+import NavListItem from "../../components/NavList/NavListItem";
 
 import IconUser from "./icons/icon-user.svg?react";
 import IconQuests from "./icons/icon-quests.svg?react";
@@ -22,23 +23,23 @@ const Sidebar = () => {
         <NavList
           navName="Navigation"
           navItems={[
-            { icon: IconUser, value: "Profile" },
-            { icon: IconQuests, value: "Quests" },
-            { icon: IconWishList, value: "Wish list" },
+            new NavListItem(IconUser, "Profile"),
+            new NavListItem(IconQuests, "Quests", "/quests"),
+            new NavListItem(IconWishList, "Wish list"),
           ]}
         />
 
         <NavList
           navName="Category"
           navItems={[
-            { icon: IconGames, value: "Games" },
-            { icon: IconComputers, value: "Computers" },
-            { icon: IconMouses, value: "Mouses" },
-            { icon: IconKeyboards, value: "Keyboards" },
-            { icon: IconHeadphones, value: "Headphones" },
-            { icon: IconMicrophones, value: "Microphones" },
-            { icon: IconGamepads, value: "Gamepads" },
-            { icon: IconVR, value: "VR headsets" },
+            new NavListItem(IconGames, "Games"),
+            new NavListItem(IconComputers, "Computers"),
+            new NavListItem(IconMouses, "Mouses"),
+            new NavListItem(IconKeyboards, "Keyboards"),
+            new NavListItem(IconHeadphones, "Headphones"),
+            new NavListItem(IconMicrophones, "Microphones"),
+            new NavListItem(IconGamepads, "Gamepads"),
+            new NavListItem(IconVR, "VR headsets"),
           ]}
           collapsing
         />
@@ -48,11 +49,11 @@ const Sidebar = () => {
         <NavList
           navName="Resources"
           navItems={[
-            "Help",
-            "About us",
-            "Contacts",
-            "Guarantees",
-            "Work with us",
+            new NavListItem(undefined, "Help"),
+            new NavListItem(undefined, "About us"),
+            new NavListItem(undefined, "Contacts"),
+            new NavListItem(undefined, "Guarantees"),
+            new NavListItem(undefined, "Work with us"),
           ]}
         />
       </div>

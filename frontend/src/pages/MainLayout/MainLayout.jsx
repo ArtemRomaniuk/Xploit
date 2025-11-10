@@ -1,18 +1,18 @@
-import styles from "./Main.module.css";
+import styles from "./MainLayout.module.css";
 import Header from "../../HOC/Header";
 import Sidebar from "../../HOC/Sidebar";
 import Footer from "../../HOC/Footer";
-import MainContent from "./MainContent";
+import { Outlet } from "react-router";
 
-const Main = () => {
+const MainLayout = () => {
   return (
-    <div className={styles.appLayout}>
+    <div className={styles.mainLayout}>
       <Header />
       <Sidebar />
       <Footer />
-      <MainContent />
+      <Outlet />
     </div>
   );
 };
 
-export default Main;
+export default MainLayout;

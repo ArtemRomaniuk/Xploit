@@ -1,16 +1,16 @@
-import StyledCatalog from "./Catalog.styles";
+import StyledCardsCatalog from "./CardsCatalog.styles";
 import Card from "../Card";
 import CatalogBtn from "../CatalogBtn";
 import { useState } from "react";
 import IconArrow from "./icon-arrow.svg?react";
 import { useCatalog } from "../../../../../features/catalog/useCatalog";
 
-const Catalog = () => {
+const CardsCatalog = () => {
   const [sort, setSort] = useState("top");
   const items = useCatalog((state) => state.items);
 
   return (
-    <StyledCatalog>
+    <StyledCardsCatalog>
       <div>
         <p>Best for you</p>
 
@@ -52,8 +52,8 @@ const Catalog = () => {
           <Card item={item} key={index} />
         ))}
       </div>
-    </StyledCatalog>
+    </StyledCardsCatalog>
   );
 };
 
-export default Catalog;
+export default CardsCatalog;
