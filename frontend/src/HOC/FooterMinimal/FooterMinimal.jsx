@@ -1,7 +1,7 @@
-import styles from "./Footer.module.css";
-import Logo from "../../../../components/Logo";
+import styles from "./FooterMinimal.module.css";
+import Logo from "../../components/Logo";
 
-const Footer = () => {
+const FooterMinimal = () => {
   return (
     <footer className={styles.footer}>
       <Logo $width="9.7rem" $height="3.2rem" $color="var(--font-darker)" />
@@ -13,4 +13,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterMinimal;

@@ -6,7 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import MainLayout from "./pages/MainLayout";
 import Catalog from "./pages/MainLayout/Catalog";
 import Quests from "./pages/MainLayout/Quests";
-import PlacingOrder from "./pages/PlacingOrder";
+
+import MinimalLayout from "./pages/MinimalLayout";
+import NotFound from "./pages/MinimalLayout/NotFound";
+import PlacingOrder from "./pages/MinimalLayout/PlacingOrder";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -18,7 +21,10 @@ createRoot(document.getElementById("root")).render(
           <Route path="quests" element={<Quests />} />
         </Route>
 
-        <Route path="placing-order" element={<PlacingOrder />} />
+        <Route element={<MinimalLayout />}>
+          <Route path="placing-order" element={<PlacingOrder />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>,

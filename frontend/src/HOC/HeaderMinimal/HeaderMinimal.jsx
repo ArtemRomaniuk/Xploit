@@ -1,8 +1,8 @@
-import styles from "./Header.module.css";
-import Logo from "../../../../components/Logo";
+import styles from "./HeaderMinimal.module.css";
+import Logo from "../../components/Logo";
 import { useNavigate } from "react-router";
 
-const Header = () => {
+const HeaderMinimal = () => {
   const navigate = useNavigate();
 
   return (
@@ -12,4 +12,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderMinimal;

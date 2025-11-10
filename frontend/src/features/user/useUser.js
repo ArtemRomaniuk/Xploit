@@ -3,7 +3,7 @@ import { create } from "zustand";
 export const useUser = create((set) => ({
   isLoggedIn: true,
   username: "Leonardo di Caprio",
-  xp: 0,
+  xp: 70,
   setLoggedIn: (newState) => set({ isLoggedIn: newState }),
   setUsername: (newUsername) => set({ username: newUsername }),
   setXP: (newXP) => set({ xp: newXP }),
