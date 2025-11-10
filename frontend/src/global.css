@@ -16,16 +16,24 @@
 
 :root {
   --white: #f1f3f5;
+  --green: #2f9e44;
 
   --bg-main: #212536;
   --bg-darker: #1b1d2d;
   --bg-darkest: #13141f;
 
+  --ui-main: #373b4a;
   --ui-darker: #323442;
+  --ui-darkest: #2c2f3b;
+  --ui-bright: #4b4f5c;
 
   --font-main: #bbbbc0;
+  --font-main-hover: #96969a;
+  --font-darker: #838386;
+  --font-darker-hover: #69696b;
 
   --accent-main: #364fc7;
+  --accent-hover: #2b3f9f;
 }
 
 * {
@@ -35,48 +43,25 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 50%;
 }
 
 body {
   font-family: "Inter", sans-serif;
   background-color: var(--bg-main);
   color: var(--font-main);
+  line-height: normal;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
 }
 
 a {
   text-decoration: none;
   color: inherit;
-}
-
-#root {
-  min-height: 100vh;
-  width: 100%;
-
-  display: grid;
-  grid-template-areas:
-    "header header header"
-    "sidebar content content"
-    "footer footer footer";
-  grid-template-rows: auto auto auto;
-  grid-template-columns: auto 1fr 1fr;
-}
-
-#root > header {
-  grid-area: header;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-#root > aside {
-  grid-area: sidebar;
-}
-
-#root > footer {
-  grid-area: footer;
-}
-
-#root > main {
-  grid-area: content;
 }

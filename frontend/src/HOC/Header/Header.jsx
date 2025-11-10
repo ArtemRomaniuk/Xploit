@@ -1,12 +1,15 @@
-import Logo from "../../components/Logo/Logo";
-import Button from "../../components/Button/Button";
-import SearchBar from "../../components/SearchBar.jsx/SearchBar";
 import styles from "./Header.module.css";
-import IconSquares from "./icon-squares.svg?react";
-import Profile from "../../components/Profile/Profile";
-import Cart from "../../components/Cart/Cart";
+import Logo from "../../components/Logo";
+import Button from "../../components/Button";
+import IconSquares from "./icons/icon-squares.svg?react";
+import SearchBar from "./components/SearchBar";
+import Profile from "./components/Profile";
+import Cart from "./components/Cart";
+import { useNavigate } from "react-router";
 
-export default function Header() {
+const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header className={styles.header}>
       <Logo
@@ -18,19 +21,27 @@ export default function Header() {
           });
         }}
       />
-      <div className={styles.catalogSearchContainer}>
-        <Button>
-          <div className={styles.catalogBtn}>
-            <IconSquares />
-            Catalog
-          </div>
+
+      <div className={styles.btnSearchContainer}>
+        <Button
+          className={styles.btnCatalog}
+          $width="16rem"
+          $height="4.4rem"
+          $gap="0.4rem"
+          onClick={() => navigate("catalog")}
+        >
+          <IconSquares />
+          Catalog
         </Button>
         <SearchBar />
       </div>
+
       <div className={styles.profileCartContainer}>
         <Profile />
         <Cart />
       </div>
     </header>
   );
-}
+};
+
+export default Header;

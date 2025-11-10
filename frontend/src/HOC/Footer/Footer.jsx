@@ -1,82 +1,98 @@
 import styles from "./Footer.module.css";
-import Logo from "../../components/Logo/Logo";
+import Logo from "../../components/Logo";
+import NavList from "../../components/NavList";
+import NavListItem from "../../components/NavList/NavListItem";
 
-const footerSections = [
-  {
-    title: "Contact us",
-    items: [
-      { text: ["601 W Temple Street,", "Los Angeles CA, 90012"] },
-      { text: "415-201-6370" },
-      { text: "info@xploit.com" },
-    ],
-  },
-  {
-    title: "Account",
-    items: [
-      { text: "Create account" },
-      { text: "Sign in" },
-      { text: "Android app" },
-      { text: "IOS app" },
-    ],
-  },
-  {
-    title: "Company",
-    items: [
-      { text: "About Xploit" },
-      { text: "For business" },
-      { text: "Our partners" },
-      { text: "Careers" },
-    ],
-  },
-  {
-    title: "Resources",
-    items: [
-      { text: "Help center" },
-      { text: "Privacy Policy" },
-      { text: "Terms of Service" },
-    ],
-  },
-];
-
-export default function Footer() {
+const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <div className={styles.section}>
-        <div className={styles.container}>
-          <div className={styles.logo}>
-            <Logo color="#838386" />
-          </div>
-          <p className={styles.copyright}>
-            Copyright© 2025 by Xploit.
-            <br />
-            All rights reserved.
-          </p>
-        </div>
+      <div className={styles.logoCopyright}>
+        <Logo $color="var(--font-darker)" $width="9.7rem" $height="3.2rem" />
+        <p>
+          Copyright© 2025 by Xploit.
+          <br /> All rights reserved.
+        </p>
       </div>
 
-      {footerSections.map((section) => (
-        <div key={section.title} className={styles.section}>
-          <div className={styles.container}>
-            <h3 className={styles.title}>{section.title}</h3>
-            <div className={styles.list}>
-              {section.items.map((item, index) => (
-                <p key={index} className={styles.item}>
-                  {Array.isArray(item.text) ? (
-                    item.text.map((line, i) => (
-                      <span key={i}>
-                        {line}
-                        {i < item.text.length - 1 && <br />}
-                      </span>
-                    ))
-                  ) : (
-                    <a href="">{item.text}</a>
-                  )}
-                </p>
-              ))}
-            </div>
-          </div>
-        </div>
-      ))}
+      <NavList
+        navName="Contact us"
+        navItems={[
+          new NavListItem(
+            undefined,
+            (
+              <>
+                601 W Temple Street,
+                <br /> Los Angeles CA, 90012
+              </>
+            ),
+          ),
+          new NavListItem(undefined, "415-201-6370"),
+          new NavListItem(undefined, "info@xploit.com"),
+        ]}
+        //
+        $fontColor="var(--font-darker)"
+        $fontColorHover="var(--font-darker-hover)"
+        $nameGap="2.4rem"
+        $itemsGap="0.8rem"
+        $fontSizeH3="2rem"
+        $fontWeightH3="400"
+        $fontSizeItem="1.6rem"
+      />
+
+      <NavList
+        navName="Account"
+        navItems={[
+          new NavListItem(undefined, "Create account"),
+          new NavListItem(undefined, "Sign in"),
+          new NavListItem(undefined, "Android app"),
+          new NavListItem(undefined, "IOS app"),
+        ]}
+        //
+        $fontColor="var(--font-darker)"
+        $fontColorHover="var(--font-darker-hover)"
+        $nameGap="2.4rem"
+        $itemsGap="0.8rem"
+        $fontSizeH3="2rem"
+        $fontWeightH3="400"
+        $fontSizeItem="1.6rem"
+      />
+
+      <NavList
+        navName="Company"
+        navItems={[
+          new NavListItem(undefined, "About Xploit"),
+          new NavListItem(undefined, "For business"),
+          new NavListItem(undefined, "Our partners"),
+          new NavListItem(undefined, "Careers"),
+        ]}
+        //
+        $fontColor="var(--font-darker)"
+        $fontColorHover="var(--font-darker-hover)"
+        $nameGap="2.4rem"
+        $itemsGap="0.8rem"
+        $fontSizeH3="2rem"
+        $fontWeightH3="400"
+        $fontSizeItem="1.6rem"
+      />
+
+      <NavList
+        navName="Resources"
+        navItems={[
+          new NavListItem(undefined, "Help center"),
+          new NavListItem(undefined, "Privacy policy"),
+          new NavListItem(undefined, "Terms of service"),
+        ]}
+        //
+        $fontColor="var(--font-darker)"
+        $fontColorHover="var(--font-darker-hover)"
+        $nameGap="2.4rem"
+        $itemsGap="0.8rem"
+        $fontSizeH3="2rem"
+        $fontWeightH3="400"
+        $fontSizeItem="1.6rem"
+      />
     </footer>
   );
-}
+};
+
+export default Footer;

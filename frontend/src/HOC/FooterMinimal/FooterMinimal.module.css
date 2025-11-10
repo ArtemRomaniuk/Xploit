@@ -1,0 +1,17 @@
+.footer {
+  background-color: var(--bg-darker);
+  height: 8rem;
+  padding: 0 12rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infoContainer {
+  display: flex;
+  gap: 2.4rem;
+
+  color: var(--font-darker);
+  font-size: 1.6rem;
+  font-weight: 300;
+}

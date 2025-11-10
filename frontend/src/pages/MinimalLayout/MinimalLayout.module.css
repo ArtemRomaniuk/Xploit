@@ -1,0 +1,17 @@
+.minimal-layout {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.minimal-layout > header {
+}
+
+.minimal-layout > main {
+  margin-bottom: auto;
+}
+
+.minimal-layout > footer {
+}

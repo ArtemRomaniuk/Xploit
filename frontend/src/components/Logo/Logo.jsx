@@ -1,15 +1,12 @@
-import logo from "../../assets/Xploit_logo.svg";
-import styles from "./Logo.module.css";
-import XploitLogo from "../../assets/Xploit_logo.svg?react";
+import styled from "styled-components";
+import XploitLogo from "../../assets/xploit-logo.svg?react";
 
-export default function Logo({ color = "var(--white)", className, onClick }) {
-  const inlineStyles = {
-    fill: color,
-  };
+const Logo = styled(XploitLogo)`
+  width: ${({ $width }) => $width || "17rem"};
+  height: ${({ $height }) => $height || "5.6rem"};
+  flex-shrink: 0;
+  cursor: pointer;
+  fill: ${({ $color }) => $color || "var(--white)"};
+`;
 
-  return (
-    <div className={className ? className : ""} onClick={onClick}>
-      <XploitLogo style={inlineStyles} className={styles.logo} />
-    </div>
-  );
-}
+export default Logo;
