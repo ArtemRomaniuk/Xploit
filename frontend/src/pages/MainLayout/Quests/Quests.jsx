@@ -1,6 +1,6 @@
 import StyledQuests from "./Quests.styles";
 import QuestCard from "./components/QuestCard";
-import { useQuests } from "../../../features/quests/useQuests";
+import { useQuests } from "../../../hooks/useQuests";
 
 const Quests = () => {
   const quests = useQuests((state) => state.quests);

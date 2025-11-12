@@ -6,6 +6,7 @@ import IconPlus from "./add.svg?react";
 
 const ItemSummary = ({
   item = {
+    id: 0,
     image: imgLogitechGProX,
     alt: "Logitech G Pro X headphones photo",
     name: "Logitech G PRO X",

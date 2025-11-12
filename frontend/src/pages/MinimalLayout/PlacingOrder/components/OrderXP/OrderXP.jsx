@@ -1,24 +1,25 @@
 import StyledOrderXP from "./OrderXP.styles";
-import { useUser } from "../../../../../features/user/useUser";
-import { useState } from "react";
+import { useUser } from "../../../../../hooks/useUser";
+import { useOrder } from "../../../../../hooks/useOrder";
 
 const OrderXP = () => {
   const userXP = useUser((state) => state.xp);
-  const [xpField, setXpField] = useState(0);
+  const xpDiscount = useOrder((state) => state.xpDiscount);
+  const setXpDiscount = useOrder((state) => state.setXpDiscount);
 
   return (
-    <StyledOrderXP $xpField={xpField} $userXP={userXP}>
+    <StyledOrderXP $xpDiscount={xpDiscount} $userXP={userXP}>
       <div className="textbox">
         <span>Use your XP:</span>
         <input
           type="number"
-          value={xpField}
+          value={xpDiscount}
           onChange={(e) =>
             e.target.value >= 0 &&
             e.target.value <= userXP &&
-            e.target.value !== "" &&
-            setXpField(e.target.value)
+            setXpDiscount(e.target.value)
           }
+          onBlur={(e) => e.target.value === "" && setXpDiscount(0)}
         />
       </div>
 
@@ -27,9 +28,9 @@ const OrderXP = () => {
         type="range"
         min={0}
         max={userXP}
-        value={xpField}
+        value={xpDiscount}
         step={1}
-        onChange={(e) => setXpField(e.target.value)}
+        onChange={(e) => setXpDiscount(e.target.value)}
       />
     </StyledOrderXP>
   );

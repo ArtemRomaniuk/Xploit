@@ -1,7 +1,7 @@
 import StyledProfile from "./Profile.styles";
 import ProfileCircle from "./profile-circle.svg?react";
 import ProfilePhoto from "./profile-photo.svg?react";
-import { useUser } from "../../../../features/user/useUser";
+import { useUser } from "../../../../hooks/useUser";
 
 const Profile = () => {
   const isLoggedIn = useUser((state) => state.isLoggedIn);

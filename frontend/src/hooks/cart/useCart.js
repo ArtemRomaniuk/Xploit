@@ -5,6 +5,7 @@ import imgVataK580 from "./vatak-580.png";
 
 const testItems = [
   {
+    id: 0,
     image: imgLogitechGProX,
     alt: "Logitech G Pro X headphones photo",
     name: "Logitech G PRO X",
@@ -14,6 +15,7 @@ const testItems = [
     count: 67,
   },
   {
+    id: 1,
     image: imgVataK580,
     alt: "Vata K580 keyboard photo",
     name: "Vata K580",

@@ -49,10 +49,10 @@ const StyledOrderXP = styled.div`
     background: none;
     border-radius: 4px;
     outline: none;
-    background: ${({ $xpField, $userXP }) =>
+    background: ${({ $xpDiscount, $userXP }) =>
       `linear-gradient(to right,
-       var(--accent-main) 0% ${($xpField / $userXP) * 100}%,
-       var(--ui-bright) ${($xpField / $userXP) * 100}% 100%)`};
+       var(--accent-main) 0% ${($xpDiscount / $userXP) * 100}%,
+       var(--ui-bright) ${($xpDiscount / $userXP) * 100}% 100%)`};
 
     &::-webkit-slider-runnable-track {
       -webkit-appearance: none;

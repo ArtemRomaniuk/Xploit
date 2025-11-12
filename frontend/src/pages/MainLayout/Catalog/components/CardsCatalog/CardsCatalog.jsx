@@ -3,7 +3,7 @@ import Card from "../Card";
 import CatalogBtn from "../CatalogBtn";
 import { useState } from "react";
 import IconArrow from "./icon-arrow.svg?react";
-import { useCatalog } from "../../../../../features/catalog/useCatalog";
+import { useCatalog } from "../../../../../hooks/catalog/useCatalog";
 
 const CardsCatalog = () => {
   const [sort, setSort] = useState("top");

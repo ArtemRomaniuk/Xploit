@@ -3,18 +3,22 @@ import ItemSummary from "../../../../../components/ItemSummary";
 import { useState } from "react";
 import IconUser from "./icon-user.svg?react";
 import IconLocation from "./location-icon.svg?react";
-import { useCart } from "../../../../../features/cart/useCart";
-
-const handleOrder = (e) => {
-  // TODO
-  e.preventDefault();
-  console.log("Order was successfully handled!");
-};
+import { useCart } from "../../../../../hooks/cart/useCart";
+import { useNavigate } from "react-router";
 
 const OrderForm = ({ ...props }) => {
   const [nameForm, setNameForm] = useState("");
   const [locationForm, setLocationForm] = useState("");
   const cartItems = useCart((state) => state.items);
+  const navigate = useNavigate();
+
+  const handleOrder = (e) => {
+    e.preventDefault();
+    setNameForm("");
+    setLocationForm("");
+    console.log("Order was successfully handled!");
+    navigate("/catalog");
+  };
 
   return (
     <StyledOrderForm {...props}>

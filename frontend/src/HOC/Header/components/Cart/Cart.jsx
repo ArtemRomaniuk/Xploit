@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useCart } from "../../../../features/cart/useCart";
+import { useCart } from "../../../../hooks/cart/useCart";
 import IconCart from "./icon-cart.svg?react";
 
 const StyledCart = styled.div`
