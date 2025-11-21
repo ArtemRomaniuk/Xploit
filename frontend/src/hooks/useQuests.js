@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 const testQuests = [
   {
+    id: 0,
     name: "Dark Souls 3",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -9,12 +10,14 @@ const testQuests = [
     progress: 100,
   },
   {
+    id: 1,
     name: "Dark Souls 3",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     xp: 30,
     progress: 84,
   },
   {
+    id: 2,
     name: "Dark Souls 3",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -22,6 +25,7 @@ const testQuests = [
     progress: 12,
   },
   {
+    id: 3,
     name: "Dark Souls 3",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -29,6 +33,7 @@ const testQuests = [
     progress: 100,
   },
   {
+    id: 4,
     name: "Dark Souls 3",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -36,6 +41,7 @@ const testQuests = [
     progress: 69,
   },
   {
+    id: 5,
     name: "Dark Souls 3",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -43,6 +49,7 @@ const testQuests = [
     progress: 100,
   },
   {
+    id: 6,
     name: "Dark Souls 3",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -56,6 +63,6 @@ export const useQuests = create((set) => ({
   setQuests: (newQuests) => set({ quests: newQuests }),
   resetQuests: () => set({ quests: [] }),
   addQuest: (quest) => set((state) => ({ quests: state.quests.push(quest) })),
-  removeQuest: (quest) =>
-    set((state) => ({ quests: state.quests.filter((q) => q !== quest) })),
+  removeQuest: (id) =>
+    set((state) => ({ quests: state.quests.filter((q) => q.id !== id) })),
 }));

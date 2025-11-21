@@ -2,7 +2,6 @@ import { create } from "zustand";
 
 export const useCart = create((set) => ({
   items: [],
-  changeItemCountTrigger: {},
 
   setItems: (newItems) => set({ items: newItems }),
   clearItems: () => set({ items: [] }),
@@ -14,7 +13,6 @@ export const useCart = create((set) => ({
       items: state.items.map((item) =>
         item.id === id ? { ...item, count: count } : item,
       ),
-      changeItemCountTrigger: {},
     })),
   clearCountlessItems: () =>
     set((state) => ({

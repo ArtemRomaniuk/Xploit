@@ -29,8 +29,8 @@ const NavList = ({
         <h3>{navName}</h3>
       )}
       <ul>
-        {navItems.map((item, i) => (
-          <li key={i}>
+        {navItems.map((item) => (
+          <li key={item.value}>
             <Link to={item.navTo}>
               {item.icon && <item.icon />}
               <span>{item.value}</span>

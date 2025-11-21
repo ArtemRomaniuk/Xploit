@@ -59,8 +59,8 @@ const OrderForm = ({ ...props }) => {
         <p className="empty-cart-message">Cart is empty</p>
       ) : (
         <ul className="cart-items">
-          {cartItems.map((cartItem, index) => (
-            <li key={index} className="cart-item">
+          {cartItems.map((cartItem) => (
+            <li key={cartItem.id} className="cart-item">
               <ItemSummary item={cartItem} />
             </li>
           ))}

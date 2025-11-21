@@ -35,8 +35,8 @@ const CartModal = () => {
       ) : (
         <>
           <ul className="cart-items-list">
-            {cartItems.map((item, index) => (
-              <li key={index}>
+            {cartItems.map((item) => (
+              <li key={item.id}>
                 <ItemSummary item={item} cart />
               </li>
             ))}

@@ -1,5 +1,4 @@
 import StyledItemSummary from "./ItemSummary.styles";
-import imgLogitechGProX from "./logitech-gprox.png";
 import IconMinus from "./substract.svg?react";
 import IconPlus from "./add.svg?react";
 import { useCart } from "../../hooks/cart/useCart";
@@ -7,14 +6,11 @@ import { useEffect, useState } from "react";
 
 const ItemSummary = ({ item, cart }) => {
   const changeItemCount = useCart((state) => state.changeItemCount);
-  const changeItemCountTrigger = useCart(
-    (state) => state.changeItemCountTrigger,
-  );
   const [countInput, setCountInput] = useState(item.count);
 
   useEffect(() => {
     setCountInput(String(item.count));
-  }, [changeItemCountTrigger]);
+  }, [item]);
 
   return (
     <StyledItemSummary $cart={cart}>

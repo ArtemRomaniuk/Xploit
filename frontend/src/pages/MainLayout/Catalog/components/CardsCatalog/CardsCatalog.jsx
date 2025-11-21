@@ -48,8 +48,8 @@ const CardsCatalog = () => {
       </div>
 
       <div>
-        {items.map((item, index) => (
-          <Card item={item} key={index} />
+        {items.map((item) => (
+          <Card item={item} key={item.id} />
         ))}
       </div>
     </StyledCardsCatalog>
