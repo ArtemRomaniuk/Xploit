@@ -7,6 +7,7 @@ import IconWishFilled from "./icons/icon-wish-filled.svg?react";
 import IconWish from "./icons/icon-wish.svg?react";
 import { useEffect, useState } from "react";
 import { useCart } from "../../../../../hooks/cart/useCart";
+import { useUser } from "../../../../../hooks/useUser";
 
 const starsArr = (starsCount) => {
   const stars = [];
@@ -22,7 +23,8 @@ const starsArr = (starsCount) => {
 };
 
 const Card = ({ item }) => {
-  const [isWished, setIsWished] = useState(false);
+  const isWished = useUser((state) => state.wishlist.has(item.id));
+  const toggleIsWished = useUser((state) => state.toggleInWishlist);
   const [aspectRation, setAspectRation] = useState();
   const addItemToCart = useCart((state) => state.addItem);
   const cartItems = useCart((state) => state.items);
@@ -39,7 +41,7 @@ const Card = ({ item }) => {
   return (
     <StyledCard $item={item} $isWished={isWished} $aspectRatio={aspectRation}>
       <IconWishFilled />
-      <IconWish onClick={() => setIsWished((w) => !w)} />
+      <IconWish onClick={() => toggleIsWished(item.id)} />
       <img src={item.image} alt={item.alt} />
       <p>{item.name}</p>
       <div>{starsArr(item.stars)}</div>
