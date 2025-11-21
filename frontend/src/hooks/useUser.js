@@ -4,6 +4,8 @@ export const useUser = create((set) => ({
   isLoggedIn: true,
   username: "Leonardo di Caprio",
   xp: 70,
+  wishList: {},
+
   setLoggedIn: (newState) => set({ isLoggedIn: newState }),
   setUsername: (newUsername) => set({ username: newUsername }),
   setXP: (newXP) => set({ xp: newXP }),

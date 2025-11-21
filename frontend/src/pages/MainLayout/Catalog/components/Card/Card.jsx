@@ -6,6 +6,7 @@ import IconAdd from "./icons/icon-plus.svg?react";
 import IconWishFilled from "./icons/icon-wish-filled.svg?react";
 import IconWish from "./icons/icon-wish.svg?react";
 import { useEffect, useState } from "react";
+import { useCart } from "../../../../../hooks/cart/useCart";
 
 const starsArr = (starsCount) => {
   const stars = [];
@@ -20,18 +21,12 @@ const starsArr = (starsCount) => {
   return stars.map((Star, index) => <span key={index}>{Star}</span>);
 };
 
-const Card = ({
-  item = {
-    image: exampleImg,
-    alt: "example alt",
-    name: "Logitech G PRO X",
-    stars: 4,
-    price: 19.99,
-    isWished: false,
-  },
-}) => {
-  const [isWished, setIsWished] = useState(item.isWished);
+const Card = ({ item }) => {
+  const [isWished, setIsWished] = useState(false);
   const [aspectRation, setAspectRation] = useState();
+  const addItemToCart = useCart((state) => state.addItem);
+  const cartItems = useCart((state) => state.items);
+  const changeCartItemCount = useCart((state) => state.changeItemCount);
 
   useEffect(() => {
     const img = new Image();
@@ -48,7 +43,18 @@ const Card = ({
       <img src={item.image} alt={item.alt} />
       <p>{item.name}</p>
       <div>{starsArr(item.stars)}</div>
-      <div>
+      <div
+        onClick={() => {
+          let isInCart = false;
+          cartItems.forEach((cartItem) => {
+            if (cartItem.id === item.id) {
+              isInCart = true;
+              changeCartItemCount(cartItem.id, cartItem.count + 1);
+            }
+          });
+          !isInCart && addItemToCart({ ...item, count: 1 });
+        }}
+      >
         <p>{item.price.toFixed(2)}$</p>
         <button>
           <IconAdd />

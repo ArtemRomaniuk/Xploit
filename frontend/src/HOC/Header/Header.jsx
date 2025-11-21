@@ -6,9 +6,12 @@ import SearchBar from "./components/SearchBar";
 import Profile from "./components/Profile";
 import Cart from "./components/Cart";
 import { useNavigate } from "react-router";
+import { useModal } from "../../hooks/useModal.jsx";
+import CartModal from "../CartModal";
 
 const Header = () => {
   const navigate = useNavigate();
+  const openModal = useModal((state) => state.open);
 
   return (
     <header className={styles.header}>
@@ -38,7 +41,7 @@ const Header = () => {
 
       <div className={styles.profileCartContainer}>
         <Profile />
-        <Cart />
+        <Cart onClick={() => openModal(<CartModal />)} />
       </div>
     </header>
   );

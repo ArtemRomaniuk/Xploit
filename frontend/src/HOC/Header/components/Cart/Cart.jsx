@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useCart } from "../../../../hooks/cart/useCart";
 import IconCart from "./icon-cart.svg?react";
+import { useOrderInfo } from "../../../../hooks/useOrderInfo";
 
 const StyledCart = styled.div`
   flex-shrink: 0;
@@ -34,11 +34,10 @@ const StyledCart = styled.div`
   }
 `;
 
-const Cart = () => {
-  const itemsCount = useCart((state) => state.items.length);
-
+const Cart = (props) => {
+  const { itemsCount } = useOrderInfo();
   return (
-    <StyledCart>
+    <StyledCart {...props}>
       <IconCart />
       <span>{itemsCount}</span>
     </StyledCart>

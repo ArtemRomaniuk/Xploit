@@ -6,12 +6,13 @@ const StyledItemSummary = styled.figure`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8rem;
+  padding: 0.8rem;
 
   .img-name {
     display: flex;
     gap: 1.6rem;
     align-items: center;
+    ${({ $cart }) => $cart && `max-width: 30rem;`}
 
     .img-wrapper {
       width: 10rem;
@@ -37,9 +38,9 @@ const StyledItemSummary = styled.figure`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 30rem;
+    max-width: 27rem;
     width: 100%;
-    gap: 3.6rem;
+    overflow-x: hidden;
 
     .price-count {
       color: var(--font-main);
@@ -81,6 +82,7 @@ const StyledItemSummary = styled.figure`
 
       input[type="number"] {
         -moz-appearance: textfield;
+        appearance: none;
       }
 
       .substract,

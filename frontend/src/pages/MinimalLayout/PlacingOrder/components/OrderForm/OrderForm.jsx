@@ -11,13 +11,16 @@ const OrderForm = ({ ...props }) => {
   const [locationForm, setLocationForm] = useState("");
   const cartItems = useCart((state) => state.items);
   const navigate = useNavigate();
+  const isCartEmpty = cartItems.length === 0;
 
   const handleOrder = (e) => {
     e.preventDefault();
-    setNameForm("");
-    setLocationForm("");
-    console.log("Order was successfully handled!");
-    navigate("/catalog");
+    if (!isCartEmpty) {
+      setNameForm("");
+      setLocationForm("");
+      console.log("Order was successfully handled!");
+      navigate("/catalog");
+    }
   };
 
   return (
@@ -52,13 +55,17 @@ const OrderForm = ({ ...props }) => {
         </div>
       </form>
 
-      <ul className="cart-items">
-        {cartItems.map((cartItem, index) => (
-          <li key={index} className="cart-item">
-            <ItemSummary item={cartItem} />
-          </li>
-        ))}
-      </ul>
+      {isCartEmpty ? (
+        <p className="empty-cart-message">Cart is empty</p>
+      ) : (
+        <ul className="cart-items">
+          {cartItems.map((cartItem, index) => (
+            <li key={index} className="cart-item">
+              <ItemSummary item={cartItem} />
+            </li>
+          ))}
+        </ul>
+      )}
     </StyledOrderForm>
   );
 };

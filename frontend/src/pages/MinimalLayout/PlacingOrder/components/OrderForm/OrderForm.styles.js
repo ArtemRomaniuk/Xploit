@@ -43,6 +43,14 @@ const StyledOrderForm = styled.div`
     }
   }
 
+  .empty-cart-message {
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+  }
+
   .cart-items {
     list-style: none;
 

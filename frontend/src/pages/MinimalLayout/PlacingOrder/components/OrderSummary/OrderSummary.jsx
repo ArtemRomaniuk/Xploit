@@ -1,10 +1,12 @@
 import StyledOrderSummary from "./OrderSummary.styles";
 import Button from "../../../../../components/Button";
 import { useOrderInfo } from "../../../../../hooks/useOrderInfo";
+import { useCart } from "../../../../../hooks/cart/useCart";
 
 const OrderSummary = () => {
   const { itemsCount, totalItemsCost, deliveryCost, xpDiscount, totalCost } =
     useOrderInfo();
+  const isCartEmpty = useCart((state) => state.items.length === 0);
 
   return (
     <StyledOrderSummary>
@@ -34,9 +36,12 @@ const OrderSummary = () => {
 
       <Button
         type="submit"
-        form="orderForm"
+        form={!isCartEmpty ? "orderForm" : "none"}
         $height="4.8rem"
         className="btn-order"
+        $backColor={isCartEmpty && `var(--ui-main)`}
+        $backColorHover={isCartEmpty && `var(--ui-main)`}
+        $cursor={isCartEmpty && "default"}
       >
         Order
       </Button>
