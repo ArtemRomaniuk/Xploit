@@ -1,9 +1,15 @@
 import StyledQuests from "./Quests.styles";
-import QuestCard from "./components/QuestCard";
+import QuestCard from "./QuestCard";
 import { useQuests } from "../../../hooks/useQuests";
+import { useEffect } from "react";
 
 const Quests = () => {
   const quests = useQuests((state) => state.quests);
+  const deleteAllClaimed = useQuests((state) => state.deleteAllClaimed);
+
+  useEffect(() => {
+    return () => deleteAllClaimed();
+  }, []);
 
   return (
     <StyledQuests>

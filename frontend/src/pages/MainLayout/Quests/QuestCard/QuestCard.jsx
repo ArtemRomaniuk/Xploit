@@ -1,25 +1,17 @@
 import StyledQuestCard from "./QuestCard.styles";
-import Button from "../../../../../components/Button";
+import Button from "../../../../components/Button";
 import IconClaimed from "./claimed.svg?react";
-import { useState } from "react";
+import { useQuests } from "../../../../hooks/useQuests";
 
-const QuestCard = ({
-  quest = {
-    name: "Dark Souls 3",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    xp: 100,
-    progress: 100,
-  },
-}) => {
-  const [isClaimed, setIsClaimed] = useState(false);
+const QuestCard = ({ quest }) => {
+  const claimQuest = useQuests((state) => state.claimQuest);
 
   return (
     <StyledQuestCard
       $progress={quest.progress}
-      className={isClaimed ? "claimed" : undefined}
+      className={quest.status === "claimed" ? "claimed" : undefined}
     >
-      {isClaimed && <IconClaimed className="iconClaimed" />}
+      {quest.status === "claimed" && <IconClaimed className="iconClaimed" />}
       <div className="textBox">
         <h4 className="questName">{quest.name}</h4>
         <p className="questDesc">{quest.description}</p>
@@ -31,7 +23,7 @@ const QuestCard = ({
             className="claimBtn"
             $width="10rem"
             $height="3.6rem"
-            onClick={() => setIsClaimed(true)}
+            onClick={() => claimQuest(quest.id)}
           >
             Claim
           </Button>

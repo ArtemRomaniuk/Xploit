@@ -5,6 +5,8 @@ import IconUser from "./icon-user.svg?react";
 import IconLocation from "./location-icon.svg?react";
 import { useCart } from "../../../../../hooks/cart/useCart";
 import { useNavigate } from "react-router";
+import { useUser } from "../../../../../hooks/useUser";
+import { useOrder } from "../../../../../hooks/useOrder";
 
 const OrderForm = ({ ...props }) => {
   const [nameForm, setNameForm] = useState("");
@@ -12,12 +14,19 @@ const OrderForm = ({ ...props }) => {
   const cartItems = useCart((state) => state.items);
   const navigate = useNavigate();
   const isCartEmpty = cartItems.length === 0;
+  const removeXP = useUser((state) => state.removeXP);
+  const usedXP = useOrder((state) => state.xpDiscount);
+  const setXpDiscount = useOrder((state) => state.setXpDiscount);
+  const clearItems = useCart((state) => state.clearItems);
 
   const handleOrder = (e) => {
     e.preventDefault();
     if (!isCartEmpty) {
       setNameForm("");
       setLocationForm("");
+      removeXP(usedXP);
+      setXpDiscount(0);
+      clearItems();
       console.log("Order was successfully handled!");
       navigate("/catalog");
     }
