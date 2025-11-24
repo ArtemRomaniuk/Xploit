@@ -82,7 +82,7 @@ const StyledQuestCard = styled.figure`
     .progressBar {
       height: 100%;
       background-color: var(--accent-main);
-      width: ${({ $progress }) => `${$progress}%`};
+      width: ${({ $progress, $goal }) => `${($progress / $goal) * 100}%`};
     }
   }
 `;
