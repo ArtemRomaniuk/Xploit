@@ -25,6 +25,11 @@ const StyledQuests = styled.main`
     grid-template-columns: repeat(auto-fill, minmax(47.9rem, 1fr));
     gap: 2.4rem;
   }
+
+  .login-dependency {
+    font-size: 4rem;
+    align-self: center;
+  }
 `;
 
 export default StyledQuests;

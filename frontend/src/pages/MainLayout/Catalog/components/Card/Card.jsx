@@ -29,6 +29,7 @@ const Card = ({ item }) => {
   const addItemToCart = useCart((state) => state.addItem);
   const cartItems = useCart((state) => state.items);
   const changeCartItemCount = useCart((state) => state.changeItemCount);
+  const isLoggedIn = useUser((state) => state.isLoggedIn);
 
   useEffect(() => {
     const img = new Image();
@@ -41,7 +42,7 @@ const Card = ({ item }) => {
   return (
     <StyledCard $item={item} $isWished={isWished} $aspectRatio={aspectRation}>
       <IconWishFilled />
-      <IconWish onClick={() => toggleIsWished(item.id)} />
+      <IconWish onClick={() => isLoggedIn && toggleIsWished(item.id)} />
       <img src={item.image} alt={item.alt} />
       <p>{item.name}</p>
       <div>{starsArr(item.stars)}</div>

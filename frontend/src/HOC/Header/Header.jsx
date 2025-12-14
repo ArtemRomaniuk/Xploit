@@ -8,10 +8,20 @@ import Cart from "./components/Cart";
 import { useNavigate } from "react-router";
 import { useModal } from "../../hooks/useModal.jsx";
 import CartModal from "../CartModal";
+import AuthModal from "../AuthModal";
+import { useUser } from "../../hooks/useUser.js";
+import { useEffect } from "react";
+import { useCart } from "../../hooks/cart/useCart.js";
 
 const Header = () => {
   const navigate = useNavigate();
   const openModal = useModal((state) => state.open);
+  const isLoggedIn = useUser((state) => state.isLoggedIn);
+  const fetchCartItems = useCart((s) => s.fetchItems);
+
+  useEffect(() => {
+    fetchCartItems();
+  }, []);
 
   return (
     <header className={styles.header}>
@@ -40,7 +50,7 @@ const Header = () => {
       </div>
 
       <div className={styles.profileCartContainer}>
-        <Profile />
+        <Profile onClick={() => !isLoggedIn && openModal(<AuthModal />)} />
         <Cart onClick={() => openModal(<CartModal />)} />
       </div>
     </header>

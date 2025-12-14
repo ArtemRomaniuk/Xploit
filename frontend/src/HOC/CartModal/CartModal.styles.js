@@ -2,17 +2,17 @@ import styled from "styled-components";
 
 const StyledCartModal = styled.div`
   position: absolute;
-  top: 8%;
-  right: 3%;
+  top: 36%;
+  right: -16%;
 
   width: 70rem;
-  height: 51rem;
+  height: 51.2rem;
   display: flex;
   flex-direction: column;
-  padding: 1.6rem;
-  gap: 1.6rem;
-  border-radius: 8px;
-  background: var(--ui-darker);
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--bg-main);
+  border: 1px solid var(--ui-darker);
   box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.25);
 
   .cart-empty {
@@ -20,13 +20,15 @@ const StyledCartModal = styled.div`
     align-items: center;
     justify-content: center;
     font-size: 4rem;
-    border-top: 1px solid #4b4f5c;
     height: 70%;
   }
 
   .modal-cart-header {
     display: flex;
     justify-content: space-between;
+    padding: 2.4rem 2.8rem;
+    background: var(--bg-darker);
+    border-bottom: 1px solid var(--ui-darkest);
 
     h3 {
       color: var(--white);
@@ -59,7 +61,7 @@ const StyledCartModal = styled.div`
     list-style: none;
     overflow-y: auto;
     overscroll-behavior: contain;
-    border-top: 1px solid #4b4f5c;
+    padding: 0 2.4rem;
 
     &::-webkit-scrollbar {
       width: 0.8rem;
@@ -79,11 +81,7 @@ const StyledCartModal = styled.div`
     }
 
     li {
-      border-top: 1px solid #4b4f5c;
-    }
-
-    li:last-child {
-      border-bottom: 1px solid #4b4f5c;
+      border-bottom: 1px solid var(--ui-main);
     }
   }
 
@@ -92,9 +90,7 @@ const StyledCartModal = styled.div`
     display: flex;
     align-items: center;
     gap: 1.6rem;
-    padding: 1.6rem 2.4rem;
-    border: 2px dashed var(--accent-main);
-    background: rgba(54, 79, 199, 0.36);
+    padding: 2.4rem;
 
     p {
       color: var(--white);

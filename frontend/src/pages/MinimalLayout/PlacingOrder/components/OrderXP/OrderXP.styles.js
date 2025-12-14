@@ -69,6 +69,11 @@ const StyledOrderXP = styled.div`
       transform: translateY(-35%);
     }
   }
+
+  .xp-login-dependency {
+    font-size: 2.4rem;
+    text-align: center;
+  }
 `;
 
 export default StyledOrderXP;

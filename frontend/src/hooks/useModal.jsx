@@ -1,9 +1,13 @@
 import { create } from "zustand";
-import CartModal from "../HOC/CartModal";
 
 export const useModal = create((set) => ({
-  content: <CartModal />,
+  content: <></>,
   isOpen: false,
-  open: (newContent) => set({ content: newContent, isOpen: true }),
+
+  open: async (newContent) => {
+    set({ content: newContent });
+    await new Promise((res) => setTimeout(res, 10));
+    set({ isOpen: true });
+  },
   close: () => set({ isOpen: false }),
 }));

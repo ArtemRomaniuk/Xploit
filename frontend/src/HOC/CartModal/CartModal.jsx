@@ -22,7 +22,7 @@ const CartModal = () => {
   }, [isOpen]);
 
   return (
-    <StyledCartModal onClick={(e) => e.stopPropagation()}>
+    <StyledCartModal onPointerDown={(e) => e.stopPropagation()}>
       <div className="modal-cart-header">
         <h3>Cart</h3>
         <button onClick={() => close()}>
@@ -48,8 +48,8 @@ const CartModal = () => {
                 navigate("/placing-order");
                 close();
               }}
-              $width="15rem"
-              $height="4.8rem"
+              $width="16rem"
+              $height="5.2rem"
             >
               checkout
             </Button>

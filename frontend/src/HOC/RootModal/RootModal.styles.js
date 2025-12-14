@@ -13,7 +13,7 @@ const StyledRootModal = styled.div`
   transition: all 0.3s;
 
   & > *:first-child {
-    transform: scale(0.9);
+    transform: translate(-50%, -50%) scale(0.9);
     transition: transform 0.3s;
   }
 
@@ -24,7 +24,7 @@ const StyledRootModal = styled.div`
       visibility: visible;
 
       & > *:first-child {
-        transform: scale(1);
+        transform: translate(-50%, -50%) scale(1);
       }
   `}
 

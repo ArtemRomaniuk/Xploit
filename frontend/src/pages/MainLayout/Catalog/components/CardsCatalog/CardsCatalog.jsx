@@ -1,17 +1,22 @@
 import StyledCardsCatalog from "./CardsCatalog.styles";
 import Card from "../Card";
 import CatalogBtn from "../CatalogBtn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconArrow from "./icon-arrow.svg?react";
 import { useCatalog } from "../../../../../hooks/catalog/useCatalog";
 
 const CardsCatalog = () => {
   const [sort, setSort] = useState("top");
   const items = useCatalog((state) => state.items);
+  const fetchItems = useCatalog((state) => state.fetchItems);
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
 
   return (
     <StyledCardsCatalog>
-      <div>
+      <div className="btns-container">
         <p>Best for you</p>
 
         <div>
@@ -47,7 +52,7 @@ const CardsCatalog = () => {
         </div>
       </div>
 
-      <div>
+      <div className="cards">
         {items.map((item) => (
           <Card item={item} key={item.id} />
         ))}

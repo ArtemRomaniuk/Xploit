@@ -9,7 +9,7 @@ const RootModal = () => {
 
   return (
     <StyledRootModal
-      onClick={() => close()}
+      onPointerDown={() => close()}
       $isOpen={isOpen}
       $rootModalStyles={rootModalStyles}
     >

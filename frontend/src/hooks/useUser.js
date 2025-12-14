@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export const useUser = create((set) => ({
-  isLoggedIn: true,
+  isLoggedIn: false,
   username: "Leonardo di Caprio",
   xp: 70,
   wishlist: new Set(),
