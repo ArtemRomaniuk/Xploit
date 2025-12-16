@@ -13,13 +13,7 @@ const CartModal = () => {
   const { totalItemsCost } = useOrderInfo();
   const close = useModal((state) => state.close);
   const navigate = useNavigate();
-  const isOpen = useModal((state) => state.isOpen);
-  const clearCountlessItems = useCart((state) => state.clearCountlessItems);
   const isEmpty = cartItems.length === 0;
-
-  useEffect(() => {
-    !isOpen && clearCountlessItems();
-  }, [isOpen]);
 
   return (
     <StyledCartModal onPointerDown={(e) => e.stopPropagation()}>
@@ -36,7 +30,7 @@ const CartModal = () => {
         <>
           <ul className="cart-items-list">
             {cartItems.map((item) => (
-              <li key={item.id}>
+              <li key={item._id}>
                 <ItemSummary item={item} cart />
               </li>
             ))}

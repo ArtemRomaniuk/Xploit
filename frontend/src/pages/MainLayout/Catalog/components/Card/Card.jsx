@@ -1,5 +1,4 @@
 import StyledCard from "./Card.styles";
-import exampleImg from "./logitech-gprox.png";
 import IconStarFilled from "./icons/starFilled.svg?react";
 import IconStar from "./icons/star.svg?react";
 import IconAdd from "./icons/icon-plus.svg?react";
@@ -33,7 +32,7 @@ const Card = ({ item }) => {
 
   useEffect(() => {
     const img = new Image();
-    img.src = item.image;
+    img.src = import.meta.env.VITE_API_URL + item.image;
     img.onload = () => {
       setAspectRation(img.naturalWidth / img.naturalHeight);
     };
@@ -42,20 +41,20 @@ const Card = ({ item }) => {
   return (
     <StyledCard $item={item} $isWished={isWished} $aspectRatio={aspectRation}>
       <IconWishFilled />
-      <IconWish onClick={() => isLoggedIn && toggleIsWished(item.id)} />
-      <img src={item.image} alt={item.alt} />
+      <IconWish onClick={() => isLoggedIn && toggleIsWished(item._id)} />
+      <img src={import.meta.env.VITE_API_URL + item.image} alt={item.alt} />
       <p>{item.name}</p>
       <div>{starsArr(item.stars)}</div>
       <div
         onClick={() => {
           let isInCart = false;
           cartItems.forEach((cartItem) => {
-            if (cartItem.id === item.id) {
+            if (cartItem._id.toString() === item._id.toString()) {
               isInCart = true;
-              changeCartItemCount(cartItem.id, cartItem.count + 1);
+              changeCartItemCount(cartItem._id.toString(), cartItem.count + 1);
             }
           });
-          !isInCart && addItemToCart({ ...item, count: 1 });
+          !isInCart && addItemToCart(item._id.toString());
         }}
       >
         <p>{item.price.toFixed(2)}$</p>

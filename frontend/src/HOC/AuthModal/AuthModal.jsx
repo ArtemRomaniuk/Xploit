@@ -8,6 +8,8 @@ const AuthModal = () => {
   const close = useModal((state) => state.close);
   const setLoggedIn = useUser((state) => state.setLoggedIn);
   const [isRegistration, setIsRegistration] = useState(false);
+  const login = useUser((s) => s.login);
+  const register = useUser((s) => s.register);
 
   // Inputs
   const [usernameInput, setUsernameInput] = useState("");
@@ -18,9 +20,12 @@ const AuthModal = () => {
   const [passwordAgainRegisterInput, setPasswordAgainRegisterInput] =
     useState("");
   const [isPasswordsSame, setIsPasswordsSame] = useState(true);
+  const [isValidationError, setIsValidationError] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    await login(usernameInput, passwordInput);
+
     setUsernameInput("");
     setPasswordInput("");
     setEmailInput("");
@@ -28,25 +33,33 @@ const AuthModal = () => {
     setPasswordRegisterInput("");
     setPasswordAgainRegisterInput("");
 
-    setLoggedIn(true);
-    console.log("Login success");
     close();
   };
 
-  const handleRegistration = (e) => {
+  const handleRegistration = async (e) => {
     e.preventDefault();
     if (passwordRegisterInput === passwordAgainRegisterInput) {
-      setUsernameInput("");
-      setPasswordInput("");
-      setEmailInput("");
-      setUsernameRegisterInput("");
-      setPasswordRegisterInput("");
-      setPasswordAgainRegisterInput("");
       setIsPasswordsSame(true);
 
-      setLoggedIn(true);
-      console.log("Registration successfull");
-      close();
+      try {
+        await register(
+          emailInput,
+          usernameRegisterInput,
+          passwordRegisterInput,
+          passwordAgainRegisterInput,
+        );
+
+        setUsernameInput("");
+        setPasswordInput("");
+        setEmailInput("");
+        setUsernameRegisterInput("");
+        setPasswordRegisterInput("");
+        setPasswordAgainRegisterInput("");
+        setIsValidationError(false);
+        close();
+      } catch (e) {
+        setIsValidationError(true);
+      }
     } else {
       setIsPasswordsSame(false);
     }
@@ -102,6 +115,9 @@ const AuthModal = () => {
             </div>
             {!isPasswordsSame && (
               <p className="passwords-missmatch">Passwords do not match</p>
+            )}
+            {isValidationError && (
+              <p className="passwords-missmatch">Validation error</p>
             )}
           </form>
 

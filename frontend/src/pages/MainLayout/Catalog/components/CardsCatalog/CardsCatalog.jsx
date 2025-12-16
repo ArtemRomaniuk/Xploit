@@ -1,18 +1,25 @@
 import StyledCardsCatalog from "./CardsCatalog.styles";
 import Card from "../Card";
 import CatalogBtn from "../CatalogBtn";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import IconArrow from "./icon-arrow.svg?react";
 import { useCatalog } from "../../../../../hooks/catalog/useCatalog";
 
 const CardsCatalog = () => {
-  const [sort, setSort] = useState("top");
   const items = useCatalog((state) => state.items);
-  const fetchItems = useCatalog((state) => state.fetchItems);
+  const fetchPage = useCatalog((state) => state.fetchPage);
+  const fetchItemsCount = useCatalog((s) => s.fetchItemsCount);
+  const nextPage = useCatalog((s) => s.nextPage);
+  const prevPage = useCatalog((s) => s.prevPage);
+  const sort = useCatalog((s) => s.currentSort);
+  const setSort = useCatalog((s) => s.setSort);
+  const currentPage = useCatalog((s) => s.currentPage);
+  const currentSort = useCatalog((s) => s.currentSort);
+  const currentLimit = useCatalog((s) => s.currentLimit);
 
   useEffect(() => {
-    fetchItems();
-  }, []);
+    fetchPage();
+  }, [currentPage, currentSort, currentLimit]);
 
   return (
     <StyledCardsCatalog>
@@ -43,10 +50,10 @@ const CardsCatalog = () => {
         </div>
 
         <div>
-          <CatalogBtn $width="6rem" $height="4.8rem">
+          <CatalogBtn $width="6rem" $height="4.8rem" onClick={prevPage}>
             <IconArrow />
           </CatalogBtn>
-          <CatalogBtn $width="6rem" $height="4.8rem">
+          <CatalogBtn $width="6rem" $height="4.8rem" onClick={nextPage}>
             <IconArrow />
           </CatalogBtn>
         </div>
@@ -54,7 +61,7 @@ const CardsCatalog = () => {
 
       <div className="cards">
         {items.map((item) => (
-          <Card item={item} key={item.id} />
+          <Card item={item} key={item._id} />
         ))}
       </div>
     </StyledCardsCatalog>

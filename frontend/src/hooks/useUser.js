@@ -1,10 +1,88 @@
 import { create } from "zustand";
+import { useCart } from "./cart/useCart";
 
-export const useUser = create((set) => ({
+export const useUser = create((set, get) => ({
   isLoggedIn: false,
-  username: "Leonardo di Caprio",
-  xp: 70,
+  username: "",
+  xp: 0,
   wishlist: new Set(),
+
+  login: async (username, password) => {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/user/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      },
+    );
+
+    const { token } = await response.json();
+    if (token) {
+      localStorage.setItem("token", token);
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const expTime = payload.exp * 1000;
+      const timeout = expTime - Date.now();
+      if (timeout <= 0) {
+        get().logout();
+      } else {
+        setTimeout(() => {
+          get().logout();
+        }, timeout);
+      }
+      await get().fetchMe();
+      await useCart.getState().fetchCart();
+    }
+  },
+
+  logout: async () => {
+    localStorage.removeItem("token");
+    get().fetchMe();
+  },
+
+  register: async (email, username, password, passwordAgain) => {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/user/register`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, username, password, passwordAgain }),
+      },
+    );
+    if (!response.ok) throw new Error("Validation failed");
+    else console.log("Registration successfull");
+  },
+
+  fetchMe: async () => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) {
+      localStorage.removeItem("token");
+      set({ isLoggedIn: false, username: "", xp: 0 });
+      return;
+    }
+
+    const me = await res.json();
+    set({
+      isLoggedIn: true,
+      username: me.username,
+      xp: me.xp,
+    });
+  },
 
   setLoggedIn: (newState) => set({ isLoggedIn: newState }),
   setUsername: (newUsername) => set({ username: newUsername }),

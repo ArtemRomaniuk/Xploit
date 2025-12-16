@@ -8,23 +8,23 @@ const QuestCard = ({ quest }) => {
 
   return (
     <StyledQuestCard
-      $goal={quest.goal}
+      $goal={quest.questRef.goal}
       $progress={quest.progress}
       className={quest.claimed ? "claimed" : undefined}
     >
       {quest.claimed && <IconClaimed className="iconClaimed" />}
       <div className="textBox">
-        <h4 className="questName">{quest.name}</h4>
-        <p className="questDesc">{quest.description}</p>
+        <h4 className="questName">{quest.questRef.name}</h4>
+        <p className="questDesc">{quest.questRef.description}</p>
       </div>
       <div className="xpContainer">
-        <p className="xp">{quest.reward}XP</p>
-        {quest.progress >= quest.goal && (
+        <p className="xp">{quest.questRef.reward}XP</p>
+        {quest.progress >= quest.questRef.goal && (
           <Button
             className="claimBtn"
             $width="10rem"
             $height="3.6rem"
-            onClick={() => claimQuest(quest.id)}
+            onClick={() => claimQuest(quest.questRef._id.toString())}
           >
             Claim
           </Button>

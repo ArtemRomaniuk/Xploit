@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 import { useUser } from "../../../../../hooks/useUser";
 import { useOrder } from "../../../../../hooks/useOrder";
 import { useQuests } from "../../../../../hooks/useQuests";
+import { useEffect } from "react";
 
 const OrderForm = ({ ...props }) => {
   const [nameForm, setNameForm] = useState("");
@@ -24,21 +25,30 @@ const OrderForm = ({ ...props }) => {
   const triggerQuestsEvent = useQuests((state) => state.triggerEvent);
   const navigate = useNavigate();
 
-  const handleOrder = (e) => {
+  const fetchCart = useCart((s) => s.fetchCart);
+  const placeOrder = useOrder((s) => s.placeOrder);
+
+  const handleOrder = async (e) => {
     e.preventDefault();
     if (!isCartEmpty) {
-      usedXP > 0 && triggerQuestsEvent("USE_XP", 1);
+      try {
+        await placeOrder(usedXP);
+        usedXP > 0 && triggerQuestsEvent("USE_XP", 1);
 
-      setNameForm("");
-      setLocationForm("");
-      removeXP(usedXP);
-      setXpDiscount(0);
-      clearItems();
+        setNameForm("");
+        setLocationForm("");
+        setXpDiscount(0);
 
-      console.log("Order was successfully handled!");
-      navigate("/catalog");
+        navigate("/catalog");
+      } catch (e) {
+        console.error(e.message);
+      }
     }
   };
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
 
   return (
     <StyledOrderForm {...props}>
@@ -77,7 +87,7 @@ const OrderForm = ({ ...props }) => {
       ) : (
         <ul className="cart-items">
           {cartItems.map((cartItem) => (
-            <li key={cartItem.id} className="cart-item">
+            <li key={cartItem._id} className="cart-item">
               <ItemSummary item={cartItem} />
             </li>
           ))}

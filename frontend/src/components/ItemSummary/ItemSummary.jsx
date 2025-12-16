@@ -16,7 +16,10 @@ const ItemSummary = ({ item, cart }) => {
     <StyledItemSummary $cart={cart}>
       <div className="img-name">
         <div className="img-wrapper">
-          <img src={item.image} alt={item.alt} />
+          <img
+            src={`${import.meta.env.VITE_API_URL}${item.image}`}
+            alt={item.alt}
+          />
         </div>
         <p>{item.name}</p>
       </div>
@@ -27,7 +30,8 @@ const ItemSummary = ({ item, cart }) => {
             <button
               className="substract"
               onClick={() =>
-                item.count > 0 && changeItemCount(item.id, item.count - 1)
+                item.count > 0 &&
+                changeItemCount(item._id.toString(), item.count - 1)
               }
             >
               <IconMinus />
@@ -43,14 +47,15 @@ const ItemSummary = ({ item, cart }) => {
                   Number(countInput) < 0 ||
                   Number(countInput) > 100
                 )
-                  changeItemCount(item.id, 0);
-                else changeItemCount(item.id, Number(countInput));
+                  changeItemCount(item._id.toString(), 0);
+                else changeItemCount(item._id.toString(), Number(countInput));
               }}
             />
             <button
               className="add"
               onClick={() =>
-                item.count < 100 && changeItemCount(item.id, item.count + 1)
+                item.count < 100 &&
+                changeItemCount(item._id.toString(), item.count + 1)
               }
             >
               <IconPlus />

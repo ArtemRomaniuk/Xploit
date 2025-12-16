@@ -17,10 +17,10 @@ const Header = () => {
   const navigate = useNavigate();
   const openModal = useModal((state) => state.open);
   const isLoggedIn = useUser((state) => state.isLoggedIn);
-  const fetchCartItems = useCart((s) => s.fetchItems);
+  const fetchCart = useCart((s) => s.fetchCart);
 
   useEffect(() => {
-    fetchCartItems();
+    fetchCart();
   }, []);
 
   return (

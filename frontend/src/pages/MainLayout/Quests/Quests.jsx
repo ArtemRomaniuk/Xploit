@@ -6,11 +6,11 @@ import { useUser } from "../../../hooks/useUser";
 
 const Quests = () => {
   const quests = useQuests((state) => state.quests);
-  const deleteAllClaimed = useQuests((state) => state.deleteAllClaimed);
   const isLoggedIn = useUser((state) => state.isLoggedIn);
+  const fetchQuests = useQuests((s) => s.fetchQuests);
 
   useEffect(() => {
-    return () => deleteAllClaimed();
+    fetchQuests();
   }, []);
 
   return (
@@ -20,7 +20,7 @@ const Quests = () => {
         <>
           <div className="questsContainer">
             {quests.map((quest) => (
-              <QuestCard quest={quest} key={quest.id} />
+              <QuestCard quest={quest} key={quest._id} />
             ))}
           </div>
           <p>No more quests...</p>
