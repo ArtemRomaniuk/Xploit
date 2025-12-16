@@ -11,7 +11,7 @@
 
 .order-container {
   display: grid;
-  grid-template-columns: 2fr 35rem;
+  grid-template-columns: 3fr minmax(35rem, 1fr);
   grid-template-rows: auto 1fr;
   gap: 1.2rem 4.8rem;
 }

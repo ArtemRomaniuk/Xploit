@@ -6,10 +6,10 @@ const StyledButton = styled.button`
   width: ${({ $width }) => $width || "auto"};
   height: ${({ $height }) => $height || "auto"};
 
-  background-color: var(--accent-main);
+  background-color: ${({ $backColor }) => $backColor || `var(--accent-main)`};
   border-radius: 8px;
   border: none;
-  cursor: pointer;
+  cursor: ${({ $cursor }) => $cursor || "pointer"};
 
   display: flex;
   justify-content: center;
@@ -22,7 +22,8 @@ const StyledButton = styled.button`
   transition: all 0.1s;
 
   &:hover {
-    background-color: var(--accent-hover);
+    background-color: ${({ $backColorHover }) =>
+      $backColorHover || `var(--accent-hover)`};
   }
 `;
 

@@ -1,36 +1,58 @@
 import StyledOrderXP from "./OrderXP.styles";
-import { useUser } from "../../../../../features/user/useUser";
-import { useState } from "react";
+import { useUser } from "../../../../../hooks/useUser";
+import { useOrder } from "../../../../../hooks/useOrder";
+import { useEffect, useState } from "react";
 
 const OrderXP = () => {
   const userXP = useUser((state) => state.xp);
-  const [xpField, setXpField] = useState(0);
+  const xpDiscount = useOrder((state) => state.xpDiscount);
+  const setXpDiscount = useOrder((state) => state.setXpDiscount);
+  const setXpDiscountTrigger = useOrder((state) => state.setXpDiscountTrigger);
+  const [xpField, setXpField] = useState(xpDiscount);
+  const isLoggedIn = useUser((state) => state.isLoggedIn);
+
+  useEffect(() => {
+    setXpField(String(xpDiscount));
+  }, [setXpDiscountTrigger]);
 
   return (
-    <StyledOrderXP $xpField={xpField} $userXP={userXP}>
-      <div className="textbox">
-        <span>Use your XP:</span>
-        <input
-          type="number"
-          value={xpField}
-          onChange={(e) =>
-            e.target.value >= 0 &&
-            e.target.value <= userXP &&
-            e.target.value !== "" &&
-            setXpField(e.target.value)
-          }
-        />
-      </div>
+    <StyledOrderXP $xpDiscount={xpDiscount} $userXP={userXP}>
+      {isLoggedIn ? (
+        <>
+          <div className="textbox">
+            <span>Use your XP:</span>
+            <input
+              type="number"
+              value={xpField}
+              onChange={(e) => setXpField(e.target.value)}
+              onBlur={(e) => {
+                if (
+                  xpField < 0 ||
+                  xpField > userXP ||
+                  xpField === "" ||
+                  Number.isNaN(Number(xpField))
+                )
+                  setXpDiscount(0);
+                else setXpDiscount(Number(xpField));
+              }}
+            />
+          </div>
 
-      <input
-        className="input-range"
-        type="range"
-        min={0}
-        max={userXP}
-        value={xpField}
-        step={1}
-        onChange={(e) => setXpField(e.target.value)}
-      />
+          <input
+            className="input-range"
+            type="range"
+            min={0}
+            max={userXP}
+            value={xpDiscount}
+            step={1}
+            onChange={(e) => setXpDiscount(e.target.value)}
+          />
+        </>
+      ) : (
+        <>
+          <p className="xp-login-dependency">Login to use XP discount</p>
+        </>
+      )}
     </StyledOrderXP>
   );
 };

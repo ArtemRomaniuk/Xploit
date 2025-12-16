@@ -17,6 +17,7 @@
 :root {
   --white: #f1f3f5;
   --green: #2f9e44;
+  --red: #f03e3e;
 
   --bg-main: #212536;
   --bg-darker: #1b1d2d;
@@ -26,6 +27,7 @@
   --ui-darker: #323442;
   --ui-darkest: #2c2f3b;
   --ui-bright: #4b4f5c;
+  --ui-bright-hover: #6f727d;
 
   --font-main: #bbbbc0;
   --font-main-hover: #96969a;

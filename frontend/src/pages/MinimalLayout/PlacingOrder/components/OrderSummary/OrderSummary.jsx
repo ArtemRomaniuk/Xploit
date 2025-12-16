@@ -1,9 +1,12 @@
 import StyledOrderSummary from "./OrderSummary.styles";
 import Button from "../../../../../components/Button";
-// import { useOrder } from "../../../../../features/order/useOrder";
+import { useOrderInfo } from "../../../../../hooks/useOrderInfo";
+import { useCart } from "../../../../../hooks/cart/useCart";
 
 const OrderSummary = () => {
-  // const itemsTotal = useOrder();
+  const { itemsCount, totalItemsCost, deliveryCost, xpDiscount, totalCost } =
+    useOrderInfo();
+  const isCartEmpty = useCart((state) => state.items.length === 0);
 
   return (
     <StyledOrderSummary>
@@ -11,25 +14,35 @@ const OrderSummary = () => {
 
       <div className="prices-container">
         <div className="price-items">
-          <p>2 items totaling</p>
-          <span>39</span>
+          <p>
+            {itemsCount} item{itemsCount > 1 && "s"} totaling
+          </p>
+          <span>{totalItemsCost}$</span>
         </div>
         <div className="price-delivery">
           <p>Delivery</p>
-          <span>39</span>
+          <span>{deliveryCost}$</span>
         </div>
         <div className="xp-discount">
           <p>XP discount</p>
-          <span>39</span>
+          <span>-{xpDiscount.toFixed(2)}$</span>
         </div>
       </div>
 
       <div className="total-price">
         <p>In total</p>
-        <span>49</span>
+        <span>{totalCost}$</span>
       </div>
 
-      <Button $height="4.8rem" className="btn-order">
+      <Button
+        type="submit"
+        form={!isCartEmpty ? "orderForm" : "none"}
+        $height="4.8rem"
+        className="btn-order"
+        $backColor={isCartEmpty && `var(--ui-main)`}
+        $backColorHover={isCartEmpty && `var(--ui-main)`}
+        $cursor={isCartEmpty && "default"}
+      >
         Order
       </Button>
     </StyledOrderSummary>

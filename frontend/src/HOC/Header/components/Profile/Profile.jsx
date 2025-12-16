@@ -1,15 +1,15 @@
 import StyledProfile from "./Profile.styles";
 import ProfileCircle from "./profile-circle.svg?react";
 import ProfilePhoto from "./profile-photo.svg?react";
-import { useUser } from "../../../../features/user/useUser";
+import { useUser } from "../../../../hooks/useUser";
 
-const Profile = () => {
+const Profile = ({ ...props }) => {
   const isLoggedIn = useUser((state) => state.isLoggedIn);
   const username = useUser((state) => state.username);
   const xp = useUser((state) => state.xp);
 
   return (
-    <StyledProfile>
+    <StyledProfile {...props}>
       <div>
         {isLoggedIn ? (
           <>

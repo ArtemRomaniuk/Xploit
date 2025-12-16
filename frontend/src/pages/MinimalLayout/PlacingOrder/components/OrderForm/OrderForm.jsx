@@ -3,18 +3,52 @@ import ItemSummary from "../../../../../components/ItemSummary";
 import { useState } from "react";
 import IconUser from "./icon-user.svg?react";
 import IconLocation from "./location-icon.svg?react";
-import { useCart } from "../../../../../features/cart/useCart";
-
-const handleOrder = (e) => {
-  // TODO
-  e.preventDefault();
-  console.log("Order was successfully handled!");
-};
+import { useCart } from "../../../../../hooks/cart/useCart";
+import { useNavigate } from "react-router";
+import { useUser } from "../../../../../hooks/useUser";
+import { useOrder } from "../../../../../hooks/useOrder";
+import { useQuests } from "../../../../../hooks/useQuests";
+import { useEffect } from "react";
 
 const OrderForm = ({ ...props }) => {
   const [nameForm, setNameForm] = useState("");
   const [locationForm, setLocationForm] = useState("");
+
   const cartItems = useCart((state) => state.items);
+  const clearItems = useCart((state) => state.clearItems);
+  const isCartEmpty = cartItems.length === 0;
+
+  const usedXP = useOrder((state) => state.xpDiscount);
+  const setXpDiscount = useOrder((state) => state.setXpDiscount);
+
+  const removeXP = useUser((state) => state.removeXP);
+  const triggerQuestsEvent = useQuests((state) => state.triggerEvent);
+  const navigate = useNavigate();
+
+  const fetchCart = useCart((s) => s.fetchCart);
+  const placeOrder = useOrder((s) => s.placeOrder);
+
+  const handleOrder = async (e) => {
+    e.preventDefault();
+    if (!isCartEmpty) {
+      try {
+        await placeOrder(usedXP);
+        usedXP > 0 && triggerQuestsEvent("USE_XP", 1);
+
+        setNameForm("");
+        setLocationForm("");
+        setXpDiscount(0);
+
+        navigate("/catalog");
+      } catch (e) {
+        console.error(e.message);
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
 
   return (
     <StyledOrderForm {...props}>
@@ -48,13 +82,17 @@ const OrderForm = ({ ...props }) => {
         </div>
       </form>
 
-      <ul className="cart-items">
-        {cartItems.map((cartItem, index) => (
-          <li key={index} className="cart-item">
-            <ItemSummary item={cartItem} />
-          </li>
-        ))}
-      </ul>
+      {isCartEmpty ? (
+        <p className="empty-cart-message">Cart is empty</p>
+      ) : (
+        <ul className="cart-items">
+          {cartItems.map((cartItem) => (
+            <li key={cartItem._id} className="cart-item">
+              <ItemSummary item={cartItem} />
+            </li>
+          ))}
+        </ul>
+      )}
     </StyledOrderForm>
   );
 };

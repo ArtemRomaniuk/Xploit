@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import IconSearch from "./icon-search.svg?react";
-import { useSearch } from "../../../../features/search/useSearch";
+import { useSearch } from "../../../../hooks/useSearch";
 
 const StyledSearchBar = styled.div`
   width: 100%;

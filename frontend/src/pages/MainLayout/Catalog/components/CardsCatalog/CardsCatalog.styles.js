@@ -5,7 +5,7 @@ const StyledCardsCatalog = styled.div`
   flex-direction: column;
   gap: 4.8rem;
 
-  & > div:first-child {
+  .btns-container {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -40,10 +40,10 @@ const StyledCardsCatalog = styled.div`
     }
   }
 
-  & > div:last-child {
+  .cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
-    grid-auto-rows: 31.8rem;
+    grid-template-rows: repeat(2, 31.8rem);
     gap: 3.6rem 2.4rem;
   }
 `;
