@@ -55,7 +55,7 @@ const Header = () => {
           data-cy="profile"
           onClick={() => !isLoggedIn && openModal(<AuthModal />)}
         />
-        <Cart onClick={() => openModal(<CartModal />)} />
+        <Cart data-cy="cartIconBtn" onClick={() => openModal(<CartModal />)} />
       </div>
     </header>
   );
