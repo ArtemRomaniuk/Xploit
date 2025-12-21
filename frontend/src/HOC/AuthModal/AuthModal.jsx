@@ -67,6 +67,7 @@ const AuthModal = () => {
 
   return (
     <StyledAuthModal
+      data-cy="authModal"
       onPointerDown={(e) => e.stopPropagation()}
       $isRegistration={isRegistration}
     >
@@ -80,6 +81,7 @@ const AuthModal = () => {
             <div className="input-field">
               <p>E-mail</p>
               <input
+                data-cy="registerEmailInput"
                 type="email"
                 required
                 value={emailInput}
@@ -89,6 +91,7 @@ const AuthModal = () => {
             <div className="input-field">
               <p>Username</p>
               <input
+                data-cy="registerUsernameInput"
                 type="text"
                 required
                 value={usernameRegisterInput}
@@ -98,6 +101,7 @@ const AuthModal = () => {
             <div className="input-field">
               <p>Password</p>
               <input
+                data-cy="registerPassInput"
                 type="password"
                 required
                 value={passwordRegisterInput}
@@ -107,6 +111,7 @@ const AuthModal = () => {
             <div className="input-field">
               <p>Password again</p>
               <input
+                data-cy="registerPassAgainInput"
                 type="password"
                 required
                 value={passwordAgainRegisterInput}
@@ -146,6 +151,7 @@ const AuthModal = () => {
             <div className="input-field">
               <p>Username</p>
               <input
+                data-cy="loginUsernameInput"
                 type="text"
                 required
                 value={usernameInput}
@@ -155,6 +161,7 @@ const AuthModal = () => {
             <div className="input-field">
               <p>Password</p>
               <input
+                data-cy="loginPassInput"
                 type="password"
                 required
                 value={passwordInput}
