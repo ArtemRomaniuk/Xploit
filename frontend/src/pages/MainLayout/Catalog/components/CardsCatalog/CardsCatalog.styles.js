@@ -4,6 +4,7 @@ const StyledCardsCatalog = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4.8rem;
+  z-index: 1;
 
   .btns-container {
     display: flex;

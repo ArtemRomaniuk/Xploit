@@ -15,13 +15,11 @@ const OrderForm = ({ ...props }) => {
   const [locationForm, setLocationForm] = useState("");
 
   const cartItems = useCart((state) => state.items);
-  const clearItems = useCart((state) => state.clearItems);
   const isCartEmpty = cartItems.length === 0;
 
   const usedXP = useOrder((state) => state.xpDiscount);
   const setXpDiscount = useOrder((state) => state.setXpDiscount);
 
-  const removeXP = useUser((state) => state.removeXP);
   const triggerQuestsEvent = useQuests((state) => state.triggerEvent);
   const navigate = useNavigate();
 
@@ -62,6 +60,7 @@ const OrderForm = ({ ...props }) => {
         <div className="input-container">
           <IconUser />
           <input
+            data-cy="inputName"
             type="text"
             value={nameForm}
             placeholder="Type your name"
@@ -73,6 +72,7 @@ const OrderForm = ({ ...props }) => {
         <div className="input-container">
           <IconLocation />
           <input
+            data-cy="inputDeliver"
             type="text"
             value={locationForm}
             placeholder="Where to deliver?"

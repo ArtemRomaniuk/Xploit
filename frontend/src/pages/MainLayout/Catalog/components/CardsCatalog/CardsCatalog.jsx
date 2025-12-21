@@ -8,10 +8,8 @@ import { useCatalog } from "../../../../../hooks/catalog/useCatalog";
 const CardsCatalog = () => {
   const items = useCatalog((state) => state.items);
   const fetchPage = useCatalog((state) => state.fetchPage);
-  const fetchItemsCount = useCatalog((s) => s.fetchItemsCount);
   const nextPage = useCatalog((s) => s.nextPage);
   const prevPage = useCatalog((s) => s.prevPage);
-  const sort = useCatalog((s) => s.currentSort);
   const setSort = useCatalog((s) => s.setSort);
   const currentPage = useCatalog((s) => s.currentPage);
   const currentSort = useCatalog((s) => s.currentSort);
@@ -28,22 +26,25 @@ const CardsCatalog = () => {
 
         <div>
           <CatalogBtn
+            data-cy="sortTop"
             onClick={() => setSort("top")}
-            $filled={sort === "top" ? true : false}
+            $filled={currentSort === "top" ? true : false}
           >
             Top
           </CatalogBtn>
           <CatalogBtn
+            data-cy="sortCheap"
             $width="13rem"
             onClick={() => setSort("cheap")}
-            $filled={sort === "cheap" ? true : false}
+            $filled={currentSort === "cheap" ? true : false}
           >
             From cheap
           </CatalogBtn>
           <CatalogBtn
+            data-cy="sortExpensive"
             $width="16.7rem"
             onClick={() => setSort("expensive")}
-            $filled={sort === "expensive" ? true : false}
+            $filled={currentSort === "expensive" ? true : false}
           >
             From expensive
           </CatalogBtn>

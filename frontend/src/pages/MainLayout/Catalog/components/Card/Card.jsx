@@ -22,7 +22,7 @@ const starsArr = (starsCount) => {
 };
 
 const Card = ({ item }) => {
-  const isWished = useUser((state) => state.wishlist.has(item.id));
+  const isWished = useUser((state) => state.wishlist.has(item._id));
   const toggleIsWished = useUser((state) => state.toggleInWishlist);
   const [aspectRation, setAspectRation] = useState();
   const addItemToCart = useCart((state) => state.addItem);
@@ -41,11 +41,15 @@ const Card = ({ item }) => {
   return (
     <StyledCard $item={item} $isWished={isWished} $aspectRatio={aspectRation}>
       <IconWishFilled />
-      <IconWish onClick={() => isLoggedIn && toggleIsWished(item._id)} />
+      <IconWish
+        data-cy="wishIcon"
+        onClick={() => isLoggedIn && toggleIsWished(item._id)}
+      />
       <img src={import.meta.env.VITE_API_URL + item.image} alt={item.alt} />
       <p>{item.name}</p>
       <div>{starsArr(item.stars)}</div>
       <div
+        data-cy="addToCart"
         onClick={() => {
           let isInCart = false;
           cartItems.forEach((cartItem) => {
