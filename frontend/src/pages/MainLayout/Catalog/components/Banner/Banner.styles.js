@@ -13,7 +13,6 @@ const StyledBanner = styled.div`
   justify-content: start;
   align-items: center;
   padding: 0 12rem;
-  z-index: -10;
 
   div {
     display: flex;
@@ -40,7 +39,6 @@ const StyledBanner = styled.div`
     top: 55%;
     right: 25%;
     filter: brightness(0.7);
-    z-index: -1;
   }
 `;
 

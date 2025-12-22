@@ -6,7 +6,6 @@ import Button from "../../components/Button";
 import IconClose from "./icon-close.svg?react";
 import { useModal } from "../../hooks/useModal.jsx";
 import { useNavigate } from "react-router";
-import { useEffect } from "react";
 
 const CartModal = () => {
   const cartItems = useCart((state) => state.items);
@@ -16,10 +15,13 @@ const CartModal = () => {
   const isEmpty = cartItems.length === 0;
 
   return (
-    <StyledCartModal onPointerDown={(e) => e.stopPropagation()}>
+    <StyledCartModal
+      data-cy="cartModal"
+      onPointerDown={(e) => e.stopPropagation()}
+    >
       <div className="modal-cart-header">
         <h3>Cart</h3>
-        <button onClick={() => close()}>
+        <button data-cy="closeBtn" onClick={() => close()}>
           <IconClose />
         </button>
       </div>

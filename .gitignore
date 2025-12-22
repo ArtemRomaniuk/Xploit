@@ -24,4 +24,6 @@ dist-ssr
 *.sw?
 
 .env
+.nyc_output
+coverage
 DB_backups

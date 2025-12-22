@@ -26,6 +26,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Logo
+        data-cy="logo"
         className={styles.logo}
         onClick={() => {
           window.scrollTo({
@@ -50,8 +51,11 @@ const Header = () => {
       </div>
 
       <div className={styles.profileCartContainer}>
-        <Profile onClick={() => !isLoggedIn && openModal(<AuthModal />)} />
-        <Cart onClick={() => openModal(<CartModal />)} />
+        <Profile
+          data-cy="profile"
+          onClick={() => !isLoggedIn && openModal(<AuthModal />)}
+        />
+        <Cart data-cy="cartIconBtn" onClick={() => openModal(<CartModal />)} />
       </div>
     </header>
   );
