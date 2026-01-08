@@ -1,6 +1,5 @@
 import CardsCatalog from "./index";
 import { useCatalog } from "../../../../../hooks/catalog/useCatalog";
-import { version } from "react-dom/server";
 
 describe("CardsCatalog", () => {
   beforeEach(() => {

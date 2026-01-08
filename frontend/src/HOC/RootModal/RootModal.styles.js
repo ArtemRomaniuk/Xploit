@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledRootModal = styled.div`
   position: fixed;
-  z-index: 2;
+  z-index: 100;
   width: 100vw;
   height: 100vh;
   top: 0;

@@ -4,11 +4,11 @@
 
   display: grid;
   grid-template-areas:
-    "header header header"
-    "sidebar content content"
-    "footer footer footer";
+    "header header"
+    "sidebar content"
+    "footer footer";
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: 30rem 1fr 1fr;
+  grid-template-columns: 30rem 1fr;
 }
 
 .mainLayout > header {
@@ -28,4 +28,18 @@
 
 .mainLayout > main {
   grid-area: content;
+}
+
+/* 1200px */
+@media (max-width: 75em) {
+  .mainLayout {
+    grid-template-columns: 27rem 1fr;
+  }
+}
+
+/* 1024px */
+@media (max-width: 64em) {
+  .mainLayout {
+    grid-template-columns: 0rem 1fr;
+  }
 }

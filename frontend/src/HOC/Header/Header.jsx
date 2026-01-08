@@ -12,12 +12,15 @@ import AuthModal from "../AuthModal";
 import { useUser } from "../../hooks/useUser.js";
 import { useEffect } from "react";
 import { useCart } from "../../hooks/cart/useCart.js";
+import IconList from "./icons/list.svg?react";
+import { useMobileSidebar } from "../../hooks/useMobileSidebar.js";
 
 const Header = () => {
   const navigate = useNavigate();
   const openModal = useModal((state) => state.open);
   const isLoggedIn = useUser((state) => state.isLoggedIn);
   const fetchCart = useCart((s) => s.fetchCart);
+  const toggleIsOpenMobileSidebar = useMobileSidebar((s) => s.toggleIsOpen);
 
   useEffect(() => {
     fetchCart();
@@ -25,6 +28,15 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
+      <Button
+        className={styles["mobile-btn-nav"]}
+        $backColor="transparent"
+        $backColorHover="transparent"
+        onClick={() => toggleIsOpenMobileSidebar()}
+      >
+        <IconList />
+      </Button>
+
       <Logo
         data-cy="logo"
         className={styles.logo}

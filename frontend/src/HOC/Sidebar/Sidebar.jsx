@@ -15,10 +15,15 @@ import IconHeadphones from "./icons/icon-headphones.svg?react";
 import IconMicrophones from "./icons/icon-microphone.svg?react";
 import IconGamepads from "./icons/icon-gamepad.svg?react";
 import IconVR from "./icons/icon-vr.svg?react";
+import { useMobileSidebar } from "../../hooks/useMobileSidebar";
 
 const Sidebar = () => {
+  const isOpenMobileSidebar = useMobileSidebar((s) => s.isOpen);
+
   return (
-    <aside className={styles.sidebar}>
+    <aside
+      className={`${styles.sidebar} ${isOpenMobileSidebar ? "" : styles["mobile-closed"]}`}
+    >
       <div className={styles.container}>
         <NavList
           navName="Navigation"

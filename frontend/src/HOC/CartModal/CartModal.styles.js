@@ -63,23 +63,6 @@ const StyledCartModal = styled.div`
     overscroll-behavior: contain;
     padding: 0 2.4rem;
 
-    &::-webkit-scrollbar {
-      width: 0.8rem;
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: var(--ui-main);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--ui-bright);
-      border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: var(--ui-bright-hover);
-    }
-
     li {
       border-bottom: 1px solid var(--ui-main);
     }

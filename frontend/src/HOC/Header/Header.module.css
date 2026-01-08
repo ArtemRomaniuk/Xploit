@@ -29,3 +29,28 @@
   gap: 2.4rem;
   margin-left: 2.4rem;
 }
+
+/* 1024px */
+@media (max-width: 64em) {
+  .header {
+    padding: 0 2.4rem;
+  }
+
+  .logo {
+    margin-right: 4rem;
+  }
+
+  button.btnCatalog {
+    display: none;
+  }
+
+  .mobile-btn-nav {
+    margin-right: 1.8rem;
+
+    svg {
+      fill: var(--white);
+      width: 4.4rem;
+      height: 4.4rem;
+    }
+  }
+}
