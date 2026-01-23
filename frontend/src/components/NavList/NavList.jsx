@@ -3,6 +3,7 @@ import StyledNavList from "./NavList.styles";
 import IconBtn from "./category-arrow.svg?react";
 import { Link } from "react-router";
 import NavListItem from "./NavListItem";
+import { useModal } from "../../hooks/useModal";
 
 const NavList = ({
   navName = "Nav",
@@ -10,7 +11,8 @@ const NavList = ({
   collapsing,
   ...props
 }) => {
-  const [isCollapsed, setCollapse] = useState(false);
+  const [isCollapsed, setCollapse] = useState(collapsing ? true : false);
+  const closeModal = useModal((s) => s.close);
 
   return (
     <StyledNavList
@@ -31,7 +33,7 @@ const NavList = ({
       <ul>
         {navItems.map((item) => (
           <li key={item.value}>
-            <Link to={item.navTo}>
+            <Link to={item.navTo} onClick={() => closeModal()}>
               {item.icon && <item.icon />}
               <span>{item.value}</span>
             </Link>

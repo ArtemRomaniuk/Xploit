@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const StyledCartModal = styled.div`
   position: absolute;
-  top: 36%;
-  right: -16%;
+  top: 9%;
+  right: 2.5%;
 
   width: 70rem;
   height: 51.2rem;

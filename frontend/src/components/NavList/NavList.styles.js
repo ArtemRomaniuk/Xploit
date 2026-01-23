@@ -18,8 +18,8 @@ const StyledNavList = styled.nav`
     cursor: pointer;
 
     button {
-      width: 2.4rem;
-      height: 2.4rem;
+      width: ${({ $collapseBtnSize }) => $collapseBtnSize || "2.4rem"};
+      height: ${({ $collapseBtnSize }) => $collapseBtnSize || "2.4rem"};
       border: none;
       background: none;
       cursor: pointer;
@@ -27,8 +27,8 @@ const StyledNavList = styled.nav`
       transform: rotate(${({ $isCollapsed }) => ($isCollapsed ? "180deg" : 0)});
 
       svg {
-        width: 2.4rem;
-        height: 2.4rem;
+        width: ${({ $collapseBtnSize }) => $collapseBtnSize || "2.4rem"};
+        height: ${({ $collapseBtnSize }) => $collapseBtnSize || "2.4rem"};
       }
     }
   }
@@ -60,8 +60,8 @@ const StyledNavList = styled.nav`
 
       svg {
         fill: ${({ $fontColor }) => $fontColor || "var(--font-main)"};
-        width: 2rem;
-        height: 2rem;
+        width: ${({ $fontSizeItem }) => $fontSizeItem || "2rem"};
+        height: ${({ $fontSizeItem }) => $fontSizeItem || "2rem"};
       }
 
       transition:

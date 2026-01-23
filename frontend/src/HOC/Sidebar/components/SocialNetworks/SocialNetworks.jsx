@@ -9,7 +9,7 @@ import IconInstagram from "./icons/instagram.svg?react";
 import IconX from "./icons/x.svg?react";
 import IconThreads from "./icons/threads.svg?react";
 
-const SocialNetworks = () => {
+const SocialNetworks = (props) => {
   const socialIcons = [
     IconTelegram,
     IconTikTok,
@@ -22,7 +22,7 @@ const SocialNetworks = () => {
   ];
 
   return (
-    <StyledSocialNetworks>
+    <StyledSocialNetworks {...props}>
       <h3>Social networks</h3>
       <ul>
         {socialIcons.map((Icon, index) => (

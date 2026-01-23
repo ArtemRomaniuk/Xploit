@@ -12,8 +12,11 @@ const StyledRootModal = styled.div`
   visibility: hidden;
   transition: all 0.3s;
 
+  --tx: 0;
+  --ty: 0;
+  --s: 0.9;
   & > *:first-child {
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(var(--tx), var(--ty)) scale(var(--s));
     transition: transform 0.3s;
   }
 
@@ -22,13 +25,11 @@ const StyledRootModal = styled.div`
     `
       opacity: 1;
       visibility: visible;
-
-      & > *:first-child {
-        transform: translate(-50%, -50%) scale(1);
-      }
+      --s: 1;
   `}
 
-  ${({ $rootModalStyles }) => $rootModalStyles && $rootModalStyles}
+  ${({ $rootModalStyles, $isOpen }) =>
+    $rootModalStyles && $rootModalStyles($isOpen)}
 `;
 
 export default StyledRootModal;

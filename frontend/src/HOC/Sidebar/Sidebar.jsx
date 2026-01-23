@@ -1,4 +1,4 @@
-import styles from "./Sidebar.module.css";
+import StyledSidebar from "./Sidebar.styles";
 import NavList from "../../components/NavList";
 import SocialNetworks from "./components/SocialNetworks";
 import NavListItem from "../../components/NavList/NavListItem";
@@ -6,6 +6,7 @@ import NavListItem from "../../components/NavList/NavListItem";
 import IconUser from "./icons/icon-user.svg?react";
 import IconQuests from "./icons/icon-quests.svg?react";
 import IconWishList from "./icons/icon-star.svg?react";
+import IconSquares from "./icons/icon-squares.svg?react";
 
 import IconGames from "./icons/icon-games.svg?react";
 import IconComputers from "./icons/icon-computer.svg?react";
@@ -15,19 +16,16 @@ import IconHeadphones from "./icons/icon-headphones.svg?react";
 import IconMicrophones from "./icons/icon-microphone.svg?react";
 import IconGamepads from "./icons/icon-gamepad.svg?react";
 import IconVR from "./icons/icon-vr.svg?react";
-import { useMobileSidebar } from "../../hooks/useMobileSidebar";
 
-const Sidebar = () => {
-  const isOpenMobileSidebar = useMobileSidebar((s) => s.isOpen);
-
+const Sidebar = ({ navListProps, socialNetworksProps, sidebarProps }) => {
   return (
-    <aside
-      className={`${styles.sidebar} ${isOpenMobileSidebar ? "" : styles["mobile-closed"]}`}
-    >
-      <div className={styles.container}>
+    <StyledSidebar className="sidebar" {...sidebarProps}>
+      <div className="container">
         <NavList
+          {...navListProps}
           navName="Navigation"
           navItems={[
+            new NavListItem(IconSquares, "Catalog", "/catalog"),
             new NavListItem(IconUser, "Profile"),
             new NavListItem(IconQuests, "Quests", "/quests"),
             new NavListItem(IconWishList, "Wish list"),
@@ -35,6 +33,7 @@ const Sidebar = () => {
         />
 
         <NavList
+          {...navListProps}
           navName="Category"
           navItems={[
             new NavListItem(IconGames, "Games"),
@@ -49,9 +48,10 @@ const Sidebar = () => {
           collapsing
         />
 
-        <SocialNetworks />
+        <SocialNetworks {...socialNetworksProps} />
 
         <NavList
+          {...navListProps}
           navName="Resources"
           navItems={[
             new NavListItem(undefined, "Help"),
@@ -62,7 +62,7 @@ const Sidebar = () => {
           ]}
         />
       </div>
-    </aside>
+    </StyledSidebar>
   );
 };
 

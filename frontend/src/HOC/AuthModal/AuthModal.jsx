@@ -190,7 +190,9 @@ const AuthModal = () => {
   );
 };
 
-AuthModal.rootModalStyles = `
+AuthModal.rootModalStyles = ({ $isOpen }) => `
+  --tx: -50%;
+  --ty: -50%;
   background-color: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(2px);
 `;

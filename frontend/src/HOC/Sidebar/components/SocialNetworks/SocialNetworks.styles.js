@@ -6,15 +6,15 @@ const StyledSocialNetworks = styled.nav`
   gap: 1.6rem;
 
   h3 {
-    font-size: 2.4rem;
-    font-weight: 500;
+    font-size: ${({ $fontSizeH3 }) => $fontSizeH3 || "2.4rem"};
+    font-weight: ${({ $fontWeightH3 }) => $fontWeightH3 || "500"};
   }
 
   ul {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(4, 2rem);
-    grid-template-rows: repeat(2, 2rem);
+    grid-template-columns: repeat(4, ${({ $iconSize }) => $iconSize || "2rem"});
+    grid-template-rows: repeat(2, ${({ $iconSize }) => $iconSize || "2rem"});
     gap: 1rem 1.6rem;
     justify-items: center;
     align-items: center;

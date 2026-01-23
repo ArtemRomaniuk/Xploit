@@ -56,7 +56,7 @@ const CartModal = () => {
   );
 };
 
-CartModal.rootModalStyles = `
+CartModal.rootModalStyles = ({ $isOpen }) => `
   background-color: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(2px);
 `;
