@@ -6,6 +6,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   justify-items: center;
+  column-gap: 1.2rem;
 }
 
 .logoCopyright {
@@ -22,4 +23,12 @@ footer > *:first-child {
 
 footer > *:last-child {
   justify-self: end;
+}
+
+/* 1024px */
+@media (max-width: 64em) {
+  footer > *:first-child,
+  footer > *:last-child {
+    justify-self: center;
+  }
 }

@@ -9,7 +9,7 @@ const Footer = () => {
       <div className={styles.logoCopyright}>
         <Logo $color="var(--font-darker)" $width="9.7rem" $height="3.2rem" />
         <p>
-          Copyright© 2025 by Xploit.
+          Copyright© {new Date().getFullYear()} by Xploit.
           <br /> All rights reserved.
         </p>
       </div>
