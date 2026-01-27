@@ -36,13 +36,22 @@ const MobilePageLayout = () => {
   return (
     <>
       <nav className={styles["page-nav"]}>
-        <Button onClick={() => navigate(-1)}>
+        <Button
+          onClick={() => navigate(-1)}
+          $backColor="var(--ui-main)"
+          $backColorHover="var(--ui-darker)"
+          $width="3.6rem"
+          $height="3.2rem"
+        >
           <ArrowBackIcon />
         </Button>
         <p>{pageName}</p>
         <div />
       </nav>
-      <Outlet />
+
+      <div className={styles.wrapper}>
+        <Outlet />
+      </div>
     </>
   );
 };

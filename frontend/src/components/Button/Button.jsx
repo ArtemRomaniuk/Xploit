@@ -7,7 +7,7 @@ const StyledButton = styled.button`
   height: ${({ $height }) => $height || "auto"};
 
   background-color: ${({ $backColor }) => $backColor || `var(--accent-main)`};
-  border-radius: 8px;
+  border-radius: ${({ $borderRadius }) => $borderRadius || "8px"};
   border: none;
   cursor: ${({ $cursor }) => $cursor || "pointer"};
 

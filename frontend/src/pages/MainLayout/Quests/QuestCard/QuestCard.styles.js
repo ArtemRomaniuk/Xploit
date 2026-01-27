@@ -40,7 +40,6 @@ const StyledQuestCard = styled.figure`
     .questName {
       color: var(--white);
       font-size: 2.4rem;
-      font-weight: 500;
       margin-bottom: 1rem;
     }
 
@@ -63,7 +62,6 @@ const StyledQuestCard = styled.figure`
       display: block;
       color: var(--white);
       font-size: 4rem;
-      font-weight: 500;
     }
 
     .claimBtn {
@@ -83,6 +81,42 @@ const StyledQuestCard = styled.figure`
       height: 100%;
       background-color: var(--accent-main);
       width: ${({ $progress, $goal }) => `${($progress / $goal) * 100}%`};
+    }
+  }
+
+  /* 400px */
+  @media (max-width: 25em) {
+    .textBox {
+      .questName {
+        font-size: 2rem;
+      }
+
+      .questDesc {
+        font-size: 1.8rem;
+      }
+    }
+
+    .xpContainer {
+      .xp {
+        font-size: 3.6rem;
+      }
+
+      .claimBtn {
+        width: 9rem;
+      }
+    }
+  }
+
+  /* 336px */
+  @media (max-width: 21em) {
+    .textBox {
+      .questName {
+        font-size: 2rem;
+      }
+
+      .questDesc {
+        font-size: 1.6rem;
+      }
     }
   }
 `;

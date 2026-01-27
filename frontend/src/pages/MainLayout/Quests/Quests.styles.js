@@ -30,6 +30,29 @@ const StyledQuests = styled.main`
     font-size: 4rem;
     align-self: center;
   }
+
+  /* 768px */
+  @media (max-width: 48em) {
+    height: 100%;
+    padding: 0;
+    gap: 0;
+
+    .login-dependency {
+      font-size: 3.2rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    & > h2 {
+      display: none;
+    }
+
+    .questsContainer {
+      gap: 1.2rem;
+      grid-template-columns: 1fr;
+    }
+  }
 `;
 
 export default StyledQuests;

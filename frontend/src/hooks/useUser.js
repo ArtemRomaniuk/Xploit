@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { useCart } from "./cart/useCart";
+import { useQuests } from "./useQuests";
 
 export const useUser = create((set, get) => ({
   isLoggedIn: false,
@@ -37,6 +38,7 @@ export const useUser = create((set, get) => ({
       }
       await get().fetchMe();
       await useCart.getState().fetchCart();
+      await useQuests.getState().fetchQuests();
     }
   },
 

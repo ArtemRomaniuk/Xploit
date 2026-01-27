@@ -5,8 +5,8 @@ import MobileNav from "../../HOC/MobileNav/MobileNav";
 const MobileLayout = () => {
   return (
     <div className={styles["mobile-layout"]}>
-      <MobileNav />
       <Outlet />
+      <MobileNav />
     </div>
   );
 };

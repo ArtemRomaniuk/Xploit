@@ -44,9 +44,18 @@ const App = () => {
               </Route>
             </>
           ) : (
+            // TODO
             <Route element={<MobileLayout />}>
               <Route path="/" element={<Navigate to="catalog" replace />} />
-              <Route path="catalog" element={<div>catalog</div>} />
+              <Route
+                path="catalog"
+                element={
+                  <>
+                    <div />
+                    <div>catalog</div>
+                  </>
+                }
+              />
 
               <Route element={<MobilePageLayout />}>
                 <Route path="cart" element={<div>cart</div>} />
@@ -55,7 +64,7 @@ const App = () => {
                   element={<div>placing order</div>}
                 />
                 <Route path="auth" element={<div>auth</div>} />
-                <Route path="quests" element={<div>quests</div>} />
+                <Route path="quests" element={<Quests />} />
                 <Route path="*" element={<div>404</div>} />
               </Route>
             </Route>
