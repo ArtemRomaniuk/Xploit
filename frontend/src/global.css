@@ -84,10 +84,3 @@ a {
 *::-webkit-scrollbar-thumb:hover {
   background-color: var(--ui-bright-hover);
 }
-
-/* 1792px */
-@media (min-width: 112em) {
-  html {
-    font-size: 62.5%;
-  }
-}
