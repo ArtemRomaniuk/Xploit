@@ -6,7 +6,10 @@ export const useQuests = create((set, get) => ({
 
   fetchQuests: async () => {
     const token = localStorage.getItem("token");
-    if (!token) return;
+    if (!token) {
+      set({ quests: [] });
+      return;
+    }
 
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/api/user/me/quests/`,

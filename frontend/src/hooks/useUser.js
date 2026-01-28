@@ -37,8 +37,6 @@ export const useUser = create((set, get) => ({
         }, timeout);
       }
       await get().fetchMe();
-      await useCart.getState().fetchCart();
-      await useQuests.getState().fetchQuests();
     }
   },
 
@@ -64,7 +62,12 @@ export const useUser = create((set, get) => ({
 
   fetchMe: async () => {
     const token = localStorage.getItem("token");
-    if (!token) return;
+    if (!token) {
+      set({ isLoggedIn: false, username: "", xp: 0 });
+      await useCart.getState().fetchCart();
+      await useQuests.getState().fetchQuests();
+      return;
+    }
 
     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/me`, {
       headers: {
@@ -75,6 +78,8 @@ export const useUser = create((set, get) => ({
     if (!res.ok) {
       localStorage.removeItem("token");
       set({ isLoggedIn: false, username: "", xp: 0 });
+      await useCart.getState().fetchCart();
+      await useQuests.getState().fetchQuests();
       return;
     }
 
@@ -84,6 +89,8 @@ export const useUser = create((set, get) => ({
       username: me.username,
       xp: me.xp,
     });
+    await useCart.getState().fetchCart();
+    await useQuests.getState().fetchQuests();
   },
 
   setLoggedIn: (newState) => set({ isLoggedIn: newState }),

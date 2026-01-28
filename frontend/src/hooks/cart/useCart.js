@@ -7,7 +7,10 @@ export const useCart = create((set, get) => ({
 
   fetchCart: async () => {
     const token = localStorage.getItem("token");
-    if (!token) return;
+    if (!token) {
+      set({ items: [], isLoading: false, error: "no token" });
+      return;
+    }
     set({ isLoading: true, error: null });
     try {
       const response = await fetch(
