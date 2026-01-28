@@ -41,13 +41,6 @@ const StyledBanner = styled.div`
     filter: brightness(0.7);
   }
 
-  /* 1792px */
-  @media (min-width: 112em) {
-    img {
-      transform: translate(+50%, -50%) scale(1.3);
-    }
-  }
-
   /* 1200px */
   @media (max-width: 75em) {
     height: 40rem;
