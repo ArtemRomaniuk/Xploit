@@ -3,13 +3,13 @@ import Button from "../../../../../components/Button";
 import { useOrderInfo } from "../../../../../hooks/useOrderInfo";
 import { useCart } from "../../../../../hooks/cart/useCart";
 
-const OrderSummary = () => {
+const OrderSummary = (props) => {
   const { itemsCount, totalItemsCost, deliveryCost, xpDiscount, totalCost } =
     useOrderInfo();
   const isCartEmpty = useCart((state) => state.items.length === 0);
 
   return (
-    <StyledOrderSummary>
+    <StyledOrderSummary {...props}>
       <h3>Total</h3>
 
       <div className="prices-container">

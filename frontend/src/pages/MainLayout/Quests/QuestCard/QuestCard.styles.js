@@ -13,6 +13,7 @@ const StyledQuestCard = styled.figure`
   grid-template-rows: 1fr auto;
   gap: 1.6rem;
   transition: all 0.3s;
+  container: quest-card / inline-size;
 
   &.claimed {
     background-color: var(--ui-darkest);
@@ -84,8 +85,8 @@ const StyledQuestCard = styled.figure`
     }
   }
 
-  /* 400px */
-  @media (max-width: 25em) {
+  /* 336px inner */
+  @container quest-card (max-width: 42em) {
     .textBox {
       .questName {
         font-size: 2rem;
@@ -107,8 +108,8 @@ const StyledQuestCard = styled.figure`
     }
   }
 
-  /* 336px */
-  @media (max-width: 21em) {
+  /* 272px inner */
+  @container quest-card (max-width: 34em) {
     .textBox {
       .questName {
         font-size: 2rem;

@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 const StyledItemSummary = styled.figure`
+  container: item-summary / inline-size;
   flex-shrink: 1;
   height: 10.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.8rem;
+  gap: 2.4rem;
 
   .img-name {
     display: flex;
@@ -15,6 +17,7 @@ const StyledItemSummary = styled.figure`
     ${({ $cart }) => $cart && `max-width: 30rem;`}
 
     .img-wrapper {
+      flex-shrink: 0;
       width: 10rem;
       height: 10rem;
       display: flex;

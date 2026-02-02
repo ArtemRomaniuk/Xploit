@@ -54,8 +54,19 @@ const StyledOrderForm = styled.div`
   .cart-items {
     list-style: none;
 
+    figure {
+      gap: 6.4rem;
+    }
+
     .cart-item:not(:last-child) {
       border-bottom: 1px solid #4b4f5c;
+    }
+
+    /* 632px inner */
+    @container item-summary (max-width: 79em) {
+      .count-price {
+        max-width: 22rem;
+      }
     }
   }
 `;

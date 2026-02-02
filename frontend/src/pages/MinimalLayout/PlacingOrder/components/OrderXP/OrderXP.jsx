@@ -3,7 +3,7 @@ import { useUser } from "../../../../../hooks/useUser";
 import { useOrder } from "../../../../../hooks/useOrder";
 import { useEffect, useState } from "react";
 
-const OrderXP = () => {
+const OrderXP = (props) => {
   const userXP = useUser((state) => state.xp);
   const xpDiscount = useOrder((state) => state.xpDiscount);
   const setXpDiscount = useOrder((state) => state.setXpDiscount);
@@ -16,7 +16,7 @@ const OrderXP = () => {
   }, [setXpDiscountTrigger]);
 
   return (
-    <StyledOrderXP $xpDiscount={xpDiscount} $userXP={userXP}>
+    <StyledOrderXP {...props} $xpDiscount={xpDiscount} $userXP={userXP}>
       {isLoggedIn ? (
         <>
           <div className="textbox">

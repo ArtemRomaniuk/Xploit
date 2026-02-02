@@ -25,7 +25,7 @@ const StyledOrderXP = styled.div`
       border: none;
       outline: none;
       height: 3.2rem;
-      width: 20%;
+      width: 8rem;
       padding: 0.4rem 0.8rem;
       text-align: center;
 
