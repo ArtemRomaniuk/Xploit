@@ -44,7 +44,7 @@ const StyledCardsCatalog = styled.div`
   .cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
-    grid-template-rows: repeat(2, 31.8rem);
+    grid-auto-rows: 31.8rem;
     gap: 3.6rem 2.4rem;
   }
 `;

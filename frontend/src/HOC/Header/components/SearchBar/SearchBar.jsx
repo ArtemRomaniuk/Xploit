@@ -34,11 +34,11 @@ const StyledSearchBar = styled.div`
   }
 `;
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const { search, setSearch, resetSearch } = useSearch();
 
   return (
-    <StyledSearchBar>
+    <StyledSearchBar {...props}>
       <IconSearch onClick={resetSearch} />
       <input
         value={search}

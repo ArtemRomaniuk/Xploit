@@ -1,46 +1,42 @@
-import StyledCardsCatalog from "./CardsCatalog.styles";
-import Card from "../Card";
-import CatalogBtn from "../CatalogBtn";
+import StyledCards from "./Cards.styles";
+import Card from "../../../MainLayout/Catalog/components/Card";
+import CatalogBtn from "../../../MainLayout/Catalog/components/CatalogBtn";
 import { useEffect } from "react";
-import IconArrow from "./icon-arrow.svg?react";
-import { useCatalog } from "../../../../../hooks/catalog/useCatalog";
 import { debounce } from "lodash";
+import { useCatalog } from "../../../../hooks/catalog/useCatalog";
+import InfiniteScroll from "react-infinite-scroll-component";
 
-const CardsCatalog = () => {
+const Cards = () => {
   const items = useCatalog((state) => state.items);
   const fetchPage = useCatalog((state) => state.fetchPage);
-  const nextPage = useCatalog((s) => s.nextPage);
-  const prevPage = useCatalog((s) => s.prevPage);
-  const setSort = useCatalog((s) => s.setSort);
-  const currentPage = useCatalog((s) => s.currentPage);
   const currentSort = useCatalog((s) => s.currentSort);
   const currentLimit = useCatalog((s) => s.currentLimit);
   const setLimit = useCatalog((s) => s.setLimit);
+  const allItemsCount = useCatalog((s) => s.allItemsCount);
+  const appendNextItems = useCatalog((s) => s.appendNextItems);
+  const setSort = useCatalog((s) => s.setSort);
+  const hasMore = useCatalog((s) => s.hasMore);
 
   useEffect(() => {
     const windowResizeListener = debounce(() => {
       const newLimit =
-        2 *
+        4 *
         getComputedStyle(
           document.querySelector(".cards"),
         ).gridTemplateColumns.split(" ").length;
       setLimit(newLimit || 2);
     }, 100);
-    windowResizeListener();
 
     window.addEventListener("resize", windowResizeListener);
+    windowResizeListener();
     return () => {
       window.removeEventListener("resize", windowResizeListener);
       windowResizeListener.cancel();
     };
   }, []);
 
-  useEffect(() => {
-    fetchPage();
-  }, [currentPage, currentSort, currentLimit]);
-
   return (
-    <StyledCardsCatalog>
+    <StyledCards>
       <div className="btns-container">
         <p>Best for you</p>
 
@@ -72,34 +68,23 @@ const CardsCatalog = () => {
             From expensive
           </CatalogBtn>
         </div>
-
-        <div>
-          <CatalogBtn
-            className="btn-prev-page"
-            $width="6rem"
-            $height="4.8rem"
-            onClick={prevPage}
-          >
-            <IconArrow />
-          </CatalogBtn>
-          <CatalogBtn
-            className="btn-next-page"
-            $width="6rem"
-            $height="4.8rem"
-            onClick={nextPage}
-          >
-            <IconArrow />
-          </CatalogBtn>
-        </div>
       </div>
 
-      <div className="cards">
+      <InfiniteScroll
+        className="cards"
+        dataLength={items.length}
+        next={appendNextItems}
+        hasMore={hasMore}
+        scrollableTarget="scrollableWrapper"
+        loader={<h4>Loading...</h4>}
+        endMessage={<h4>No more items... </h4>}
+      >
         {items.map((item) => (
           <Card item={item} key={item._id} />
         ))}
-      </div>
-    </StyledCardsCatalog>
+      </InfiniteScroll>
+    </StyledCards>
   );
 };
 
-export default CardsCatalog;
+export default Cards;

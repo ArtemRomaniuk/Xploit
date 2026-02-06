@@ -8,6 +8,7 @@ export const useCatalog = create((set, get) => ({
   currentSort: "top",
   currentLimit: 10,
   allItemsCount: 0,
+  hasMore: true,
 
   fetchPage: async () => {
     await get().fetchItemsCount();
@@ -18,7 +19,35 @@ export const useCatalog = create((set, get) => ({
       );
       if (!response.ok) throw new Error("Failed to load catalog items");
       const catalogItems = await response.json();
-      set({ items: catalogItems, isLoading: false, error: null });
+      set({
+        items: catalogItems,
+        hasMore: catalogItems.length < get().allItemsCount,
+        isLoading: false,
+        error: null,
+      });
+    } catch (error) {
+      console.error(error.message);
+      set({ isLoading: false, error: error.message });
+    }
+  },
+
+  appendNextItems: async () => {
+    await get().fetchItemsCount();
+    set({ isLoading: true, error: null });
+
+    try {
+      get().nextPage();
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/catalog/page?page=${get().currentPage}&limit=${get().currentLimit}&sort=${get().currentSort}`,
+      );
+      if (!response.ok) throw new Error("Failed to append next catalog items");
+      const newItems = await response.json();
+      set((s) => ({
+        items: [...s.items, ...newItems],
+        hasMore: [...s.items, ...newItems].length < s.allItemsCount,
+        isLoading: false,
+        error: null,
+      }));
     } catch (error) {
       console.error(error.message);
       set({ isLoading: false, error: error.message });
@@ -50,7 +79,17 @@ export const useCatalog = create((set, get) => ({
   prevPage: () =>
     set((s) => ({ currentPage: s.currentPage <= 0 ? 0 : s.currentPage - 1 })),
 
-  setSort: (sort) => set({ currentSort: sort }),
+  setSort: (sort) => {
+    if (get().currentSort !== sort) {
+      set({ currentSort: sort, currentPage: 0 });
+      get().fetchPage();
+    }
+  },
 
-  setLimit: (newLimit) => set({ currentLimit: newLimit, currentPage: 0 }),
+  setLimit: (newLimit) => {
+    if (get().currentLimit !== newLimit) {
+      set({ currentLimit: newLimit, currentPage: 0 });
+      get().fetchPage();
+    }
+  },
 }));

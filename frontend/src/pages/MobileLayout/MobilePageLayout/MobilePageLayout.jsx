@@ -28,7 +28,7 @@ const MobilePageLayout = () => {
         break;
 
       default:
-        setPageName("404");
+        setPageName("Page not found");
         break;
     }
   }, [location]);

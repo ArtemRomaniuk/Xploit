@@ -7,7 +7,7 @@ export const useModal = create((set, get) => ({
   open: async (newContent) => {
     get().close();
     set({ content: newContent });
-    await new Promise((res) => setTimeout(res, 10));
+    await new Promise((res) => setTimeout(res, 1));
     set({ isOpen: true });
 
     const scrollbarWidth =

@@ -47,9 +47,10 @@ const Card = ({ item }) => {
       />
       <img src={import.meta.env.VITE_API_URL + item.image} alt={item.alt} />
       <p>{item.name}</p>
-      <div>{starsArr(item.stars)}</div>
+      <div className="stars">{starsArr(item.stars)}</div>
       <div
         data-cy="addToCart"
+        className="add-to-cart-btn"
         onClick={() => {
           let isInCart = false;
           cartItems.forEach((cartItem) => {

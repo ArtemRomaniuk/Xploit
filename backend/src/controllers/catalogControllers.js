@@ -18,6 +18,7 @@ export const getCatalogPage = async (req, res) => {
   const catalogItems = await CatalogItem.find()
     .sort({
       [sortParam]: sortOrder,
+      _id: 1,
     })
     .skip(Number(page) * Number(limit))
     .limit(Number(limit));

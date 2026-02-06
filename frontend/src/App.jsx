@@ -13,8 +13,10 @@ import Quests from "./pages/MainLayout/Quests";
 import MinimalLayout from "./pages/MinimalLayout";
 import NotFound from "./pages/MinimalLayout/NotFound";
 import PlacingOrder from "./pages/MinimalLayout/PlacingOrder";
+
 import MobileLayout from "./pages/MobileLayout/MobileLayout";
 import MobilePageLayout from "./pages/MobileLayout/MobilePageLayout/MobilePageLayout";
+import MobileCatalog from "./pages/MobileLayout/Catalog";
 
 const App = () => {
   const fetchMe = useUser((s) => s.fetchMe);
@@ -47,15 +49,7 @@ const App = () => {
             // TODO
             <Route element={<MobileLayout />}>
               <Route path="/" element={<Navigate to="catalog" replace />} />
-              <Route
-                path="catalog"
-                element={
-                  <>
-                    <div />
-                    <div>catalog</div>
-                  </>
-                }
-              />
+              <Route path="catalog" element={<MobileCatalog />} />
 
               <Route element={<MobilePageLayout />}>
                 <Route path="cart" element={<div>cart</div>} />

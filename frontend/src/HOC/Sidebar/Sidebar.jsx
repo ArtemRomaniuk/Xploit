@@ -19,7 +19,7 @@ import IconVR from "./icons/icon-vr.svg?react";
 
 const Sidebar = ({ navListProps, socialNetworksProps, sidebarProps }) => {
   return (
-    <StyledSidebar className="sidebar" {...sidebarProps}>
+    <StyledSidebar {...sidebarProps}>
       <div className="container">
         <NavList
           {...navListProps}

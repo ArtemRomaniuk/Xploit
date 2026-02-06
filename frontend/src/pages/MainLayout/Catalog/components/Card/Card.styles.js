@@ -35,9 +35,12 @@ const StyledCard = styled.figure`
     max-width: 22rem;
     max-height: 22rem;
     object-fit: contain;
-    transform: ${({ $aspectRatio }) =>
-      $aspectRatio > 1 ? "translate(0, 15%)" : "translate(0, -10%)"};
     top: 0;
+    --tx: 0%;
+    --ty: 0%;
+    --s: 1;
+    transform: scale(var(--s)) translate(var(--tx), var(--ty));
+    ${({ $aspectRatio }) => ($aspectRatio > 1 ? `--ty: 17%;` : `--ty: -10%;`)};
   }
 
   & > p {

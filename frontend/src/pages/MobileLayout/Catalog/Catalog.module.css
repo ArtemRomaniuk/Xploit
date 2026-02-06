@@ -1,0 +1,46 @@
+div.search-bar {
+  margin: 1.2rem;
+  width: auto;
+  max-width: none;
+  height: 4rem;
+}
+
+.wrapper {
+  padding: 0 1.2rem 1.2rem;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.catalog {
+  padding: 0;
+
+  & > div:first-child {
+    height: 17.5rem;
+    padding: 0;
+    justify-content: center;
+    margin-bottom: 1.6rem;
+
+    & > div {
+      transform: translate(-70%, 0);
+      h2 {
+        font-size: 3.6rem;
+        margin-bottom: 0.4rem;
+      }
+
+      p {
+        color: #5e6185;
+        font-size: 2rem;
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+
+      button {
+        display: none;
+      }
+    }
+
+    img {
+      transform: translate(30%, -50%) scale(0.31);
+    }
+  }
+}
