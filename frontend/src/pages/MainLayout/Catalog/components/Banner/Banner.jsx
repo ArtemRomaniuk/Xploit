@@ -2,9 +2,9 @@ import StyledBanner from "./Banner.styles";
 import Button from "../../../../../components/Button";
 import HeadphonesImage from "./logitech-gprox.png";
 
-const Banner = () => {
+const Banner = (props) => {
   return (
-    <StyledBanner>
+    <StyledBanner {...props}>
       <div>
         <h2>Headphones</h2>
         <p>"Logitech G PRO X"</p>

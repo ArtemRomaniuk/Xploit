@@ -9,7 +9,7 @@ const Catalog = () => {
       <SearchBar className={styles["search-bar"]} />
       <div className={styles.wrapper} id="scrollableWrapper">
         <main className={styles.catalog}>
-          <Banner />
+          <Banner className={styles.banner} />
           <Cards />
         </main>
       </div>

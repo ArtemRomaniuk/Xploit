@@ -5,6 +5,9 @@ import { useEffect } from "react";
 import { debounce } from "lodash";
 import { useCatalog } from "../../../../hooks/catalog/useCatalog";
 import InfiniteScroll from "react-infinite-scroll-component";
+import IconStar from "./icons/star.svg?react";
+import IconAscending from "./icons/ascending.svg?react";
+import IconDescending from "./icons/descending.svg?react";
 
 const Cards = () => {
   const items = useCatalog((state) => state.items);
@@ -47,7 +50,8 @@ const Cards = () => {
             onClick={() => setSort("top")}
             $filled={currentSort === "top" ? true : false}
           >
-            Top
+            <span>Top</span>
+            <IconStar />
           </CatalogBtn>
           <CatalogBtn
             data-cy="sortCheap"
@@ -56,7 +60,8 @@ const Cards = () => {
             onClick={() => setSort("cheap")}
             $filled={currentSort === "cheap" ? true : false}
           >
-            From cheap
+            <span>From cheap</span>
+            <IconAscending />
           </CatalogBtn>
           <CatalogBtn
             data-cy="sortExpensive"
@@ -65,7 +70,8 @@ const Cards = () => {
             onClick={() => setSort("expensive")}
             $filled={currentSort === "expensive" ? true : false}
           >
-            From expensive
+            <span>From expensive</span>
+            <IconDescending />
           </CatalogBtn>
         </div>
       </div>

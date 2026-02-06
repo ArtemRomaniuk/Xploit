@@ -20,23 +20,28 @@ const StyledCards = styled.div`
     div {
       display: flex;
       gap: 1rem;
-
-      svg {
-        fill: var(--font-darker);
-        transition: all 0.3s;
-      }
-
-      button:hover svg {
-        fill: var(--font-darker-hover);
-      }
-
-      button:last-child svg {
-        transform: rotate(180deg);
-      }
-    }
-
-    div:last-child {
       margin-left: auto;
+
+      button {
+        height: 3.6rem;
+        font-size: 1.8rem;
+
+        svg {
+          display: none;
+        }
+      }
+
+      .btn-sort-top {
+        width: 6rem;
+      }
+
+      .btn-sort-cheap {
+        width: 12.5rem;
+      }
+
+      .btn-sort-expensive {
+        width: 16rem;
+      }
     }
   }
 
@@ -91,6 +96,34 @@ const StyledCards = styled.div`
 
       .stars {
         display: none;
+      }
+    }
+  }
+
+  /* 496px */
+  @media (max-width: 31rem) {
+    .btns-container {
+      div {
+        button {
+          border-radius: 4px;
+
+          span {
+            display: none;
+          }
+
+          svg {
+            display: block;
+            width: 3rem;
+            height: 3rem;
+          }
+        }
+
+        .btn-sort-top,
+        .btn-sort-cheap,
+        .btn-sort-expensive {
+          width: 3rem;
+          height: 3rem;
+        }
       }
     }
   }

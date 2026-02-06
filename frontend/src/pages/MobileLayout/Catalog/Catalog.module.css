@@ -18,7 +18,7 @@ div.search-bar {
     height: 17.5rem;
     padding: 0;
     justify-content: center;
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.2rem;
 
     & > div {
       transform: translate(-70%, 0);
@@ -40,7 +40,31 @@ div.search-bar {
     }
 
     img {
-      transform: translate(30%, -50%) scale(0.31);
+      transform: translate(35%, -50%) scale(0.31);
+    }
+  }
+}
+
+/* 496px */
+@media (max-width: 31rem) {
+  .catalog {
+    .banner:first-child {
+      img {
+        transform: translate(50%, -50%) scale(0.31);
+      }
+
+      div {
+        transform: translate(-44%, 0);
+
+        h2 {
+          font-size: 3rem;
+          margin-bottom: 0.2rem;
+        }
+
+        p {
+          font-size: 1.6rem;
+        }
+      }
     }
   }
 }
