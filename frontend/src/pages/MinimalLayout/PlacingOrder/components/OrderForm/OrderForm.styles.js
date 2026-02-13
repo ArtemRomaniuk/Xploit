@@ -69,6 +69,56 @@ const StyledOrderForm = styled.div`
       }
     }
   }
+
+  /* 768px */
+  @media (max-width: 48rem) {
+    background-color: transparent;
+    margin-bottom: 0;
+
+    .cart-items {
+      background-color: var(--ui-darker);
+      padding: 2.4rem;
+      border-radius: 8px;
+
+      figure {
+        display: grid;
+        height: auto;
+        row-gap: 1.2rem;
+        grid-template-columns: 1fr;
+        padding: 1.2rem;
+
+        .img-name {
+          gap: 2.4rem;
+          justify-content: space-between;
+          text-align: center;
+        }
+
+        .count-price {
+          justify-content: space-between;
+          max-width: none;
+
+          .price {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+
+    .order-form {
+      background-color: var(--ui-darker);
+      order: 1;
+      padding: 2.4rem;
+      border-radius: 8px;
+    }
+  }
+
+  /* 400px */
+  @media (max-width: 25rem) {
+    .cart-items,
+    .order-form {
+      padding: 1.2rem;
+    }
+  }
 `;
 
 export default StyledOrderForm;

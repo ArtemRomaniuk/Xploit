@@ -3,13 +3,14 @@ import Button from "../../components/Button";
 import StyledAuthModal from "./AuthModal.styles";
 import { useModal } from "../../hooks/useModal";
 import { useUser } from "../../hooks/useUser";
+import { useNavigate } from "react-router";
 
-const AuthModal = () => {
-  const close = useModal((state) => state.close);
-  const setLoggedIn = useUser((state) => state.setLoggedIn);
+const AuthModal = ({ mobile }) => {
+  const close = !mobile && useModal((state) => state.close);
   const [isRegistration, setIsRegistration] = useState(false);
   const login = useUser((s) => s.login);
   const register = useUser((s) => s.register);
+  const navigate = useNavigate();
 
   // Inputs
   const [usernameInput, setUsernameInput] = useState("");
@@ -33,7 +34,7 @@ const AuthModal = () => {
     setPasswordRegisterInput("");
     setPasswordAgainRegisterInput("");
 
-    close();
+    !mobile ? close() : navigate("/catalog");
   };
 
   const handleRegistration = async (e) => {
@@ -56,7 +57,7 @@ const AuthModal = () => {
         setPasswordRegisterInput("");
         setPasswordAgainRegisterInput("");
         setIsValidationError(false);
-        close();
+        !mobile ? close() : navigate("/catalog");
       } catch (e) {
         setIsValidationError(true);
       }
@@ -70,12 +71,15 @@ const AuthModal = () => {
       data-cy="authModal"
       onPointerDown={(e) => e.stopPropagation()}
       $isRegistration={isRegistration}
+      $mobile={mobile}
     >
       {isRegistration ? (
         <>
-          <div className="auth-heading-container">
-            <h2>Sign up</h2>
-          </div>
+          {!mobile && (
+            <div className="auth-heading-container">
+              <h2>Sign up</h2>
+            </div>
+          )}
 
           <form id="register-form" onSubmit={(e) => handleRegistration(e)}>
             <div className="input-field">
@@ -142,10 +146,12 @@ const AuthModal = () => {
         </>
       ) : (
         <>
-          <div className="auth-heading-container">
-            <h2>Sign in</h2>
-            <p>Access your Xploit account</p>
-          </div>
+          {!mobile && (
+            <div className="auth-heading-container">
+              <h2>Sign in</h2>
+              <p>Access your Xploit account</p>
+            </div>
+          )}
 
           <form id="login-form" onSubmit={(e) => handleLogin(e)}>
             <div className="input-field">

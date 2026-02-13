@@ -104,6 +104,26 @@ const StyledAuthModal = styled.div`
       }
     }
   }
+
+  ${({ $mobile }) =>
+    $mobile &&
+    `
+    position: static;
+    max-width: 40rem;
+    width: auto;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    border-radius: 0;
+
+    #login-form,
+    #register-form {
+      margin-top: 3.2rem;
+      gap: 1.6rem;
+    }
+  `}
 `;
 
 export default StyledAuthModal;

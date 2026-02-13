@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { useUser } from "./useUser";
 
 export const useOrder = create((set) => ({
   deliveryCost: 12,
@@ -21,6 +22,7 @@ export const useOrder = create((set) => ({
       );
       if (!response.ok) throw new Error("Failed to place order");
       console.log("Order placed");
+      useUser.getState().fetchMe();
     } catch (error) {
       console.error(error.message);
     }

@@ -3,10 +3,10 @@ import OrderForm from "./components/OrderForm";
 import OrderXP from "./components/OrderXP";
 import OrderSummary from "./components/OrderSummary";
 
-const PlacingOrder = () => {
+const PlacingOrder = ({ mobile }) => {
   return (
     <main className={styles["main-container"]}>
-      <h2>Place an order</h2>
+      {!mobile && <h2>Place an order</h2>}
 
       <div className={styles["order-container"]}>
         <OrderForm className={styles["order-form"]} />

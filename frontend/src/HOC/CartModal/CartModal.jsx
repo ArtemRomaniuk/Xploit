@@ -7,10 +7,10 @@ import IconClose from "./icon-close.svg?react";
 import { useModal } from "../../hooks/useModal.jsx";
 import { useNavigate } from "react-router";
 
-const CartModal = () => {
+const CartModal = ({ mobile }) => {
   const cartItems = useCart((state) => state.items);
   const { totalItemsCost } = useOrderInfo();
-  const close = useModal((state) => state.close);
+  const close = !mobile && useModal((state) => state.close);
   const navigate = useNavigate();
   const isEmpty = cartItems.length === 0;
 
@@ -18,13 +18,17 @@ const CartModal = () => {
     <StyledCartModal
       data-cy="cartModal"
       onPointerDown={(e) => e.stopPropagation()}
+      $mobile={mobile}
+      $empty={totalItemsCost <= 0}
     >
-      <div className="modal-cart-header">
-        <h3>Cart</h3>
-        <button data-cy="closeBtn" onClick={() => close()}>
-          <IconClose />
-        </button>
-      </div>
+      {!mobile && (
+        <div className="modal-cart-header">
+          <h3>Cart</h3>
+          <button data-cy="closeBtn" onClick={() => close()}>
+            <IconClose />
+          </button>
+        </div>
+      )}
 
       {isEmpty ? (
         <p className="cart-empty">Cart is empty</p>
@@ -42,7 +46,7 @@ const CartModal = () => {
             <Button
               onClick={() => {
                 navigate("/placing-order");
-                close();
+                !mobile && close();
               }}
               $width="16rem"
               $height="5.2rem"

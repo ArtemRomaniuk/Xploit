@@ -17,10 +17,13 @@ import PlacingOrder from "./pages/MinimalLayout/PlacingOrder";
 import MobileLayout from "./pages/MobileLayout/MobileLayout";
 import MobilePageLayout from "./pages/MobileLayout/MobilePageLayout/MobilePageLayout";
 import MobileCatalog from "./pages/MobileLayout/Catalog";
+import AuthModal from "./HOC/AuthModal";
+import CartModal from "./HOC/CartModal";
 
 const App = () => {
   const fetchMe = useUser((s) => s.fetchMe);
-  const isMobile = useMediaQuery("(max-width: 48em)"); // 768px
+  const isMobile = useMediaQuery("(max-width: 48rem)"); // 768px
+  const isLoggedIn = useUser((s) => s.isLoggedIn);
 
   useEffect(() => {
     fetchMe();
@@ -46,20 +49,25 @@ const App = () => {
               </Route>
             </>
           ) : (
-            // TODO
             <Route element={<MobileLayout />}>
               <Route path="/" element={<Navigate to="catalog" replace />} />
               <Route path="catalog" element={<MobileCatalog />} />
 
               <Route element={<MobilePageLayout />}>
-                <Route path="cart" element={<div>cart</div>} />
+                <Route path="cart" element={<CartModal mobile />} />
+                <Route path="placing-order" element={<PlacingOrder mobile />} />
                 <Route
-                  path="placing-order"
-                  element={<div>placing order</div>}
+                  path="auth"
+                  element={
+                    !isLoggedIn ? (
+                      <AuthModal mobile />
+                    ) : (
+                      <Navigate to="/catalog" replace />
+                    )
+                  }
                 />
-                <Route path="auth" element={<div>auth</div>} />
                 <Route path="quests" element={<Quests />} />
-                <Route path="*" element={<div>404</div>} />
+                <Route path="*" element={<NotFound />} />
               </Route>
             </Route>
           )}
