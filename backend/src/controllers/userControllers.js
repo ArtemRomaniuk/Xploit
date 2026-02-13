@@ -2,6 +2,7 @@ import { User } from "../models/User.js";
 import { CatalogItem } from "../models/CatalogItem.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { Types } from "mongoose";
 
 export const registerUser = async (req, res) => {
   const { email, username, password, passwordAgain } = req.body;
@@ -10,6 +11,12 @@ export const registerUser = async (req, res) => {
   try {
     const hashedPass = await bcrypt.hash(password, 10);
     const newUser = new User({ email, username, password: hashedPass });
+    newUser.quests.push(
+      { questRef: "694069d15b87b33aa9a34dbc", progress: 0 },
+      { questRef: "69406a0f5b87b33aa9a34dc6", progress: 0 },
+      { questRef: "694069d15b87b33aa9a34dbd", progress: 0 },
+    );
+    newUser.xp = 20;
     await newUser.save();
     res.status(201).json(newUser);
   } catch (e) {
@@ -104,7 +111,7 @@ export const claimQuest = async (req, res) => {
     return res.status(403).json({ message: "quest doesn't completed" });
 
   user.xp += quest.questRef.reward;
-  user.quests.pull({ quest });
+  user.quests.pull({ questRef: new Types.ObjectId(id) });
   user.save();
   res.status(200).json({ quest });
 };
@@ -115,6 +122,10 @@ export const placeOrder = async (req, res) => {
   const user = await User.findById(req.user.id);
   user.xp -= xp;
   user.cart = [];
+  const useXPQuest = user.quests.find(
+    (q) => q.questRef.toString() === "694069d15b87b33aa9a34dbc",
+  );
+  if (useXPQuest) useXPQuest.progress += 1;
 
   user.save();
   res.status(201).json({ message: "order was placed" });
